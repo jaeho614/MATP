@@ -33,7 +33,7 @@ makeBtn(footBar, footMenu);
 const newRank = document.querySelector(".newRank");
 const allRank = document.querySelector(".allRank");
 
-const carBox = [{ name: "<" }, { name: ">" }]; ////
+const carBox = [{ name: "<" }, { name: ">" }]; ////캐러셀 함수 어떻게 할지?
 
 function makeCarousel(container, items) {
   items.map(item => {
