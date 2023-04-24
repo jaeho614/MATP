@@ -1,12 +1,21 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('board', {
-    board_no: {
+  return sequelize.define('comment', {
+    comment_no: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
-      comment: "게시판 번호"
+      comment: "댓글 번호"
+    },
+    board_no: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+      comment: "게시판 번호",
+      references: {
+        model: 'board',
+        key: 'board_no'
+      }
     },
     user_no: {
       type: DataTypes.BIGINT,
@@ -17,12 +26,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'user_no'
       }
     },
-    board_title: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-      comment: "제목"
-    },
-    board_content: {
+    comment_content: {
       type: DataTypes.TEXT,
       allowNull: false,
       comment: "내용"
@@ -34,22 +38,29 @@ module.exports = function(sequelize, DataTypes) {
     },
     update_dt: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
       comment: "수정일자"
     },
-    board_del: {
+    comment_del: {
       type: DataTypes.TINYINT,
       allowNull: false,
       comment: "삭제"
     }
   }, {
     sequelize,
-    tableName: 'board',
+    tableName: 'comment',
     timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
         unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "comment_no" },
+        ]
+      },
+      {
+        name: "board_no",
         using: "BTREE",
         fields: [
           { name: "board_no" },

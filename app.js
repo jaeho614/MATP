@@ -4,18 +4,35 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const app = express();
 const dotenv = require("dotenv");
+const bodyParser = require("body-parser");
+const nunjucks = require("nunjucks");
+const session = require("express-session");
+const multer = require("multer");
+const morgan = require("morgan");
+const fs = require("fs");
 dotenv.config();
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const loginRouter = require('./routes/login');
+const joinRouter = require('./routes/join');
+const myPageRouter = require('./routes/mypage');
 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'twig');
+app.set('view engine', 'html');
+nunjucks.configure("views", {
+    express: app,
+    watch: true,
+});
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/login', loginRouter);
+app.use('/join', joinRouter);
+app.use('/mypage', myPageRouter);
+
+app.use("/", express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({extended: true}));
 
 sequelize.sync({force: false})
     .then(() => {

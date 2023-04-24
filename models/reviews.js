@@ -1,12 +1,21 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('board', {
-    board_no: {
+  return sequelize.define('reviews', {
+    review_no: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
-      comment: "게시판 번호"
+      comment: "리뷰 등록번호"
+    },
+    store_no: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+      comment: "가게 번호",
+      references: {
+        model: 'stores',
+        key: 'store_no'
+      }
     },
     user_no: {
       type: DataTypes.BIGINT,
@@ -17,15 +26,15 @@ module.exports = function(sequelize, DataTypes) {
         key: 'user_no'
       }
     },
-    board_title: {
-      type: DataTypes.STRING(100),
+    review_content: {
+      type: DataTypes.STRING(255),
       allowNull: false,
-      comment: "제목"
+      comment: "리뷰 내용"
     },
-    board_content: {
-      type: DataTypes.TEXT,
+    star_cnt: {
+      type: DataTypes.FLOAT,
       allowNull: false,
-      comment: "내용"
+      comment: "별점"
     },
     create_dt: {
       type: DataTypes.DATE,
@@ -37,14 +46,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       comment: "수정일자"
     },
-    board_del: {
+    review_del: {
       type: DataTypes.TINYINT,
       allowNull: false,
       comment: "삭제"
     }
   }, {
     sequelize,
-    tableName: 'board',
+    tableName: 'reviews',
     timestamps: false,
     indexes: [
       {
@@ -52,7 +61,14 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "board_no" },
+          { name: "review_no" },
+        ]
+      },
+      {
+        name: "store_no",
+        using: "BTREE",
+        fields: [
+          { name: "store_no" },
         ]
       },
       {
