@@ -16,6 +16,8 @@ const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const joinRouter = require('./routes/join');
 const myPageRouter = require('./routes/mypage');
+const searchRouter = require('./routes/search');
+const join_okRouter = require('./routes/join_ok');
 
 
 // view engine setup
@@ -26,13 +28,15 @@ nunjucks.configure("views", {
     watch: true,
 });
 
+app.use(express.urlencoded({extended: true}));
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/join', joinRouter);
 app.use('/mypage', myPageRouter);
+app.use('/search', searchRouter);
+app.use('/join_ok', join_okRouter);
 
 app.use("/", express.static(path.join(__dirname, "public")));
-app.use(express.urlencoded({extended: true}));
 
 sequelize.sync({force: false})
     .then(() => {

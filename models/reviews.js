@@ -36,16 +36,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       comment: "별점"
     },
-    create_dt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      comment: "등록일자"
-    },
-    update_dt: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      comment: "수정일자"
-    },
     review_del: {
       type: DataTypes.TINYINT,
       allowNull: false,
@@ -54,7 +44,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     sequelize,
     tableName: 'reviews',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",

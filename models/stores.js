@@ -63,16 +63,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       comment: "좋아요 수"
     },
-    create_dt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      comment: "등록 일자"
-    },
-    update_dt: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      comment: "수정 일자"
-    },
     store_del: {
       type: DataTypes.TINYINT,
       allowNull: false,
@@ -81,7 +71,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     sequelize,
     tableName: 'stores',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",

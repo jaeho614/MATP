@@ -5,28 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/join.css" />
-    <title>회원가입</title>
+    <title>{{join}}</title>
 </head>
 <body>
     <div>MATP</div>
     <div>
-        <form id="userForm">
-            ID: <input type="text" />
-            <button>ID 중복확인</button>
-            닉네임: <input type="text" />
-            <button>닉네임 중복확인</button>
-            PW: <input type="text" />
-            PW 재확인: <input type="text" />
-            이름 : <input type="text" />
-            생년월일: <input type="text" />
-            phone: <input type="text" />
-            <button>인증번호 받기</button>
-            <input type="text" placeholder="인증번호 입력" />
-            본인확인 email: <input type="text" />
-            지역: <input type="text" />
-            성별: <input type="text" />
+        <form id="userForm" action="/join" method="post">
+            <div class="">
+                <label for="join-id">아이디</label>
+                <input id="join-id" type="text" name="id" />
+                <button type="submit">ID 중복확인</button>
+            </div>
+            <div class="">
+                <label for="join-nick">닉네임</label>
+                <input id="join-nick" type="text" name="nick" />
+                <button>닉네임 중복확인</button>
+            </div>
+            <div class="">
+                <label for="join-password">비밀번호</label>
+                <input id="join-password" type="password" name="pwd" />
+                <label for="join-password-chk">비밀번호 확인</label>
+                <input id="password-chk" type="password" name="password-chk" />
+            </div>
+            <div class="">
+                <label for="join-name">이름</label>
+                <input id="join-name" type="text" name="name" />
+            </div>
+            <div class="">
+                <label for="join-birthday">생년월일</label>
+                <input id="join-birthday" type="text" name="birthday" />
+            </div>
+            <div class="">
+                <label for="join-phone">phone</label>
+                <input id="join-phone" type="text" name="phone" />
+                <button type="submit">인증번호 받기</button>
+                <input type="text" placeholder="인증번호 입력" />
+            </div>
+            <div class="">
+                <label for="join-email">E-Mail</label>
+                <input id="join-email" type="email" name="email" />
+            </div>
+            <div class="">
+                <label for="join-region">지역</label>
+                <input id="join-region" type="text" name="addr" />
+            </div>
+            <div class="">
+                <label for="join-gender">성별</label>
+                <input id="join-gender" type="text" name="gender" />
+            </div>
+            <button id="join-btn" type="submit">가입하기</button>
         </form>
-        <button>가입하기</button>
     </div>
     <script src="/javascripts/join.js"></script>
 </body>

@@ -27,16 +27,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       comment: "내용"
     },
-    create_dt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      comment: "등록일자"
-    },
-    update_dt: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      comment: "수정일자"
-    },
     board_del: {
       type: DataTypes.TINYINT,
       allowNull: false,
@@ -45,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     sequelize,
     tableName: 'board',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",

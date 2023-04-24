@@ -16,13 +16,8 @@ const footMenu = [
 
 function makeBtn(container, items) {
   items.map(item => {
-    const button = document.createElement("button");
     const containerName = container.className;
-
-    container.appendChild(button);
-    button.classList = `${containerName}Btns`;
-    button.id = item.id;
-    button.innerHTML = item.name;
+    container.innerHTML += `<a href=${item.id} id=${item.id} class=${containerName}Btns>` + item.name + "</a>";
   });
 }
 

@@ -11,27 +11,28 @@
     <div>MATP Log In</div>
     <div>
         <div>아이디</div>
-        <div>이메일</div>
+        <!-- <div>이메일</div> -->
     </div>
-    <form>
-        ID: <input type="text" />
-        PW: <input type="text" />
-        <button>Log In</button>
+    <form id="loginForm" action="/login" method="post">
+        <label for="login-id">아이디</label>
+        <input id="login-id" type="text" name="id" />
+        <label for="login-password">비밀번호</label>
+        <input id="login-password" type="password" name="password" />
+        <button type="submit">Log In</button>
     </form>
-    <form>
+    <!-- <form>
         E-MAIL: <input type="email" />
         PW: <input type="text" />
         <button>Log In</button>
-    </form>
+    </form> -->
     <div>
-        <div>회원가입</div>
-        <div>ID찾기</div>
-        <div>비밀번호 찾기</div>
+        <a href="join">회원가입</div>
+        <a href="findid">ID찾기</div>
+        <a href="findpw">비밀번호</div>
     </div>
     <div>
-        <div>카카오톡</div>
-        <div>구글</div>
-        <div>네이버</div>
+        <a href="kakaologin">카카오톡</div>
+        <a href="naverlogin">네이버</div>
     </div>
 </body>
 <script src="/javascripts/login.js"></script>

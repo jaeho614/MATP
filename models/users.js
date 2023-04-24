@@ -74,16 +74,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       comment: "이메일"
     },
-    create_dt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      comment: "가입일자"
-    },
-    update_dt: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      comment: "수정일자"
-    },
     user_leave: {
       type: DataTypes.TINYINT,
       allowNull: false,
@@ -92,7 +82,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     sequelize,
     tableName: 'users',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",
