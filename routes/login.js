@@ -8,24 +8,17 @@ router.get("/", (req, res) => {
 router.post('/', async (req, res, next) => {
     try {
         console.log("로그인 됐어요~");
+        // const User = await users.findOne({
+        //     // where: {user_id: req.users && req.users.user_id},
+        //     where: user_
+        // });
+        console.log("오 된다", req.body);
+        // res.render('/', {User});
     } catch(error) {
         console.error(error);
         next(error);
     };
-
-    // try {
-    //     // const User = await users.findOne({
-    //     //     where: {id: req.user && req.user.id || null},
-    //     //     include: {
-    //     //         model: users,
-    //     //     },
-    //     // });
-    //     // res.render('/', {User});
-    // } catch (error) {
-    //     console.error(error);
-    //     next(error);
-    // };
-    return res.redirect("/");
+    // return res.redirect("/");
 });
 
 
