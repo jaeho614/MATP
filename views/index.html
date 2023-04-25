@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/index.css" />
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <div class="header">
+      <div id="mainLogo"></div>
+      <div class="login-display">
+        {% if userId %}
+        <div class="logedInform">{{userId}}</div>
+        <div>
+          <a href="profile">내정보</a>
+          <a href="/auth/logout">로그아웃</a>
+        </div>
+        {% else %}
+        <a href="login" id="mainLogInBtn">Log In</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="navBar"></div>
+    <div class="main">
+      <div id="newRestaurant">
+        <div class="mainRankName">새로운 식당</div>
+        <div class="newRank"></div>
+      </div>
+      <div id="allRegionsRank">
+        <div class="mainRankName">전국 맛집 랭킹</div>
+        <div class="allRank"></div>
+      </div>
+    </div>
+    <div class="footer"></div>
+  </body>
+  <script src="/javascripts/index.js"></script>
+</html>
