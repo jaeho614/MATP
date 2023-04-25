@@ -15,12 +15,12 @@ const passportConfig = require("./passport");
 dotenv.config();
 passportConfig();
 
-// const indexRouter = require("./routes/index");
-// const loginRouter = require("./routes/login");
-// const joinRouter = require("./routes/join");
-// const profileRouter = require("./routes/profile");
-// const searchRouter = require("./routes/search");
-// const authRouter = require("./routes/auth");
+const indexRouter = require("./routes/index");
+const loginRouter = require("./routes/login");
+const joinRouter = require("./routes/join");
+const profileRouter = require("./routes/profile");
+const searchRouter = require("./routes/search");
+const authRouter = require("./routes/auth");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -46,12 +46,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use("/", indexRouter);
-// app.use("/login", loginRouter);
-// app.use("/join", joinRouter);
-// app.use("/profile", profileRouter);
-// app.use("/search", searchRouter);
-// app.use("/auth", authRouter);
+app.use("/", indexRouter);
+app.use("/login", loginRouter);
+app.use("/join", joinRouter);
+app.use("/profile", profileRouter);
+app.use("/search", searchRouter);
+app.use("/auth", authRouter);
 
 app.use("/", express.static(path.join(__dirname, "public")));
 
