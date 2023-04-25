@@ -69,8 +69,8 @@ app.use((err, req, res, next) => {
   res.status(500).sendFile(path.join(__dirname, "/error.html"));
 });
 
-app.listen(app.get("port"), () => {
-  console.log(app.get("port"), "포트 대기중...");
+app.listen(3333, () => {
+  console.log(3333, "포트 대기중...");
 });
 
 module.exports = app;
