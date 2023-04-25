@@ -129,3 +129,12 @@ body {
   border: none;
   background-color: transparent;
 }
+
+
+
+
+
+.logedInform {
+  width: 100px;
+  background-color: aquamarine;
+}

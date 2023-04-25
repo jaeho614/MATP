@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
       unique: "user_id"
     },
     user_pwd: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(255),
       allowNull: false,
       comment: "비밀번호"
     },

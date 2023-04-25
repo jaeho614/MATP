@@ -10,14 +10,17 @@ const session = require("express-session");
 const multer = require("multer");
 const morgan = require("morgan");
 const fs = require("fs");
+const passport = require("passport");
+const passportConfig = require("./passport");
 dotenv.config();
+passportConfig();
 
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const joinRouter = require('./routes/join');
-const myPageRouter = require('./routes/mypage');
+const profileRouter = require('./routes/profile');
 const searchRouter = require('./routes/search');
-const join_okRouter = require('./routes/join_ok');
+const authRouter = require("./routes/auth");
 
 
 // view engine setup
@@ -29,12 +32,25 @@ nunjucks.configure("views", {
 });
 
 app.use(express.urlencoded({extended: true}));
+
+app.use(session({
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.COOKIE_SECRET,
+    cookie: {
+        httpOnly: true,
+        secure: false,
+    },
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/join', joinRouter);
-app.use('/mypage', myPageRouter);
+app.use('/profile', profileRouter);
 app.use('/search', searchRouter);
-app.use('/join_ok', join_okRouter);
+app.use("/auth", authRouter);
 
 app.use("/", express.static(path.join(__dirname, "public")));
 

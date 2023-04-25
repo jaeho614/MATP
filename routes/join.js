@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
 router.post("/", async (req, res, next) => {
   try {
-    await users.create({
+    const User = await users.create({
         user_type_no: 1,
         user_id: req.body.id,
         user_pwd: req.body.pwd,
@@ -23,7 +23,7 @@ router.post("/", async (req, res, next) => {
         created_at: 1,
         user_leave: 1,
       });
-      return res.redirect("/");
+      return res.redirect("/auth/join", { User });
   } catch (error) {
     console.error(error);
     next(error);
