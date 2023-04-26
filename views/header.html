@@ -1,0 +1,15 @@
+<div class="header">
+    <div id="mainLogo"></div>
+    <div class="login-display">
+        {% if user %}
+        <div class="logedInform">{{user.user_id}}</div>
+        <div>
+            <a href="/profile">내정보</a>
+            <a href="/auth/logout">로그아웃</a>
+        </div>
+        {% else %}
+        <a href="/auth/login" id="mainLogInBtn">Log In</a>
+        <a href="/auth/join" id="mainJoinBtn">회원가입</a>
+        {% endif %}
+    </div>
+</div>

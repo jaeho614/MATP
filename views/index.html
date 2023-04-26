@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/index.css" />
+    <title>{{title}}</title>
+  </head>
+  <body>
+    {% include "header.html" %}
+    {% include "navbar.html" %}
+    <div class="main">
+      <div id="newRestaurant">
+        <div class="mainRankName">새로운 식당</div>
+        <div class="newRank"></div>
+      </div>
+      <div id="allRegionsRank">
+        <div class="mainRankName">전국 맛집 랭킹</div>
+        <div class="allRank"></div>
+      </div>
+    </div>
+    {% include "footer.html" %}
+  </body>
+  <script src="/javascripts/index.js"></script>
+</html>

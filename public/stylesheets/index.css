@@ -1,0 +1,140 @@
+* {
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 740px;
+  }
+  
+  /* header */
+  .header {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    padding: 0 30px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: beige;
+  }
+  
+  #mainLogo {
+    cursor: pointer;
+    width: 130px;
+    height: 70px;
+    background-color: black;
+  }
+  
+  #mainLogInBtn {
+    cursor: pointer;
+    width: 70px;
+    height: 40px;
+    border: none;
+    background-color: white;
+  }
+  
+  /* navBar */
+  .navBar {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+    height: 50px;
+    background-color: brown;
+  }
+  
+  .navBarBtns {
+    cursor: pointer;
+    font-weight: bold;
+    width: 200px;
+    border: none;
+    background-color: transparent;
+    height: 100%;
+  }
+  
+  /* main */
+  
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    height: 80%;
+    background-color: orange;
+  }
+  
+  .mainRankName {
+    height: 25px;
+    border-bottom: 1px solid black;
+  }
+  
+  .newRank {
+    display: flex;
+    width: 100%;
+    height: 225px;
+    background-color: beige;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .allRank {
+    display: flex;
+    width: 100%;
+    height: 225px;
+    background-color: beige;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .carouselBtn {
+    cursor: pointer;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: orange;
+  }
+  
+  #newRestaurant {
+    width: 800px;
+    height: 250px;
+    background-color: white;
+    margin-bottom: 40px;
+  }
+  
+  #allRegionsRank {
+    width: 800px;
+    height: 250px;
+    background-color: white;
+  }
+  
+  /* footer */
+  .footer {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    bottom: 0;
+    height: 50px;
+    justify-content: space-around;
+    background-color: aquamarine;
+  }
+  
+  .footerBtns {
+    padding: 0 20px;
+    font-weight: bold;
+    width: 200px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+  }
+  
+  
+  
+  
+  
+  .logedInform {
+    width: 100px;
+    background-color: aquamarine;
+  }

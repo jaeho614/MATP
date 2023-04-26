@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/login.css" />
+    <title>{{title}}</title>
+</head>
+<body>
+    <div>MATP Log In</div>
+    <div>
+        <div>아이디</div>
+        <!-- <div>이메일</div> -->
+    </div>
+    <form id="loginForm" action="/auth/login" method="post">
+        <label for="login-id">아이디</label>
+        <input id="login-id" type="text" name="id" />
+        <label for="login-password">비밀번호</label>
+        <input id="login-password" type="password" name="password" />
+        <button type="submit">Log In</button>
+    </form>
+    <!-- <form>
+        E-MAIL: <input type="email" />
+        PW: <input type="text" />
+        <button>Log In</button>
+    </form> -->
+    <div>
+        <a href="/auth/join">회원가입</div>
+        <a href="findid">ID찾기</div>
+        <a href="findpw">비밀번호</div>
+    </div>
+    <div>
+        <a href="kakao">카카오톡</div>
+        <a href="naver">네이버</div>
+    </div>
+</body>
+<script src="/javascripts/login.js"></script>
+</html>
