@@ -3,6 +3,7 @@ var _board = require("./board");
 var _board_files = require("./board_files");
 var _comment = require("./comment");
 var _food_category = require("./food_category");
+var _hashtags = require("./hashtags");
 var _menu = require("./menu");
 var _menu_imgs = require("./menu_imgs");
 var _regions = require("./regions");
@@ -18,6 +19,7 @@ function initModels(sequelize) {
   var board_files = _board_files(sequelize, DataTypes);
   var comment = _comment(sequelize, DataTypes);
   var food_category = _food_category(sequelize, DataTypes);
+  var hashtags = _hashtags(sequelize, DataTypes);
   var menu = _menu(sequelize, DataTypes);
   var menu_imgs = _menu_imgs(sequelize, DataTypes);
   var regions = _regions(sequelize, DataTypes);
@@ -62,6 +64,7 @@ function initModels(sequelize) {
     board_files,
     comment,
     food_category,
+    hashtags,
     menu,
     menu_imgs,
     regions,

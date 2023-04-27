@@ -7,7 +7,6 @@ exports.join = async(req, res, next) => {
     console.log("auth-------req.body",req.body);
     try{
         const exUser = await users.findOne({ where: {user_id: id}});
-
         if (exUser) {
             console.log("이미 존재하는 아이디입니다.");
             return res.redirect("/join?error=exist");
@@ -36,7 +35,7 @@ exports.join = async(req, res, next) => {
 
 exports.login = (req, res, next) => {
     passport.authenticate("local", (authError, user, info) => {
-        console.log("logggggggggggggggin",req.body);
+        console.log("passport.authenticate->",user.user_id);
         if(authError){
             console.error(authError);
             return next(authError);

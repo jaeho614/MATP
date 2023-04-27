@@ -45,21 +45,24 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', pageRouter);
+
 // app.use('/login', loginRouter);
 app.use('/profile', profileRouter);
 app.use('/search', searchRouter);
 app.use("/auth", authRouter);
+app.use('/', pageRouter);
 
 app.use("/", express.static(path.join(__dirname, "public")));
 
-sequelize.sync({force: false})
-    .then(() => {
-        console.log("데이터베이스 연결 성공!");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+// sequelize.sync({force: false})
+//     .then(() => {
+//         console.log("데이터베이스 연결 성공!");
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
+
+
 
 
 app.use((err, req, res, next) => {
@@ -72,5 +75,17 @@ app.listen(app.get("port"), () => {
 });
 
 
+
+// error handler
+app.use(function(err, req, res, next) {
+    // set locals, only providing error in development
+    // res.local.user = null;
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+  
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+  });
 
 module.exports = app;

@@ -12,6 +12,10 @@ router.use((req, res, next) => {
 
 router.get("/profile", isLoggedIn, renderProfile);
 router.get("/join", isNotLoggedIn, renderJoin);
-router.get("/", renderMain);
+router.get("/", (req, res, next) => {
+    const user = req.user;
+    console.log("controllers/page/main------", user);
+    res.render("index");
+});
 
 module.exports = router;
