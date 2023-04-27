@@ -1,5 +1,4 @@
 exports.isLoggedIn = (req, res, next) => {
-    console.log("middleware/index/login");
     if (req.isAuthenticated()) {
         next();
     } else {
@@ -8,7 +7,6 @@ exports.isLoggedIn = (req, res, next) => {
 };
 
 exports.isNotLoggedIn = (req, res, next) => {
-    console.log("middleware/index/notlogin");
     if(!req.isAuthenticated()) {
         next();
     } else {

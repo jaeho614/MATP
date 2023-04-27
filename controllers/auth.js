@@ -1,16 +1,15 @@
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const {users} = require("../models");
+const { users } = require("../models");
 
 exports.join = async(req, res, next) => {
     const {id, nick, pwd, name, birthday, phone, email, addr, gender} = req.body;
-    console.log("auth-------req.body",req.body);
     try{
         const exUser = await users.findOne({ where: {user_id: id}});
         if (exUser) {
             console.log("이미 존재하는 아이디입니다.");
             return res.redirect("/join?error=exist");
-        }
+        };
         const hash = await bcrypt.hash(pwd, 12);
         await users.create({
             user_type_no: 1,
@@ -35,7 +34,6 @@ exports.join = async(req, res, next) => {
 
 exports.login = (req, res, next) => {
     passport.authenticate("local", (authError, user, info) => {
-        console.log("passport.authenticate->",user.user_id);
         if(authError){
             console.error(authError);
             return next(authError);
@@ -57,4 +55,20 @@ exports.logout = (req, res) => {
     req.logout(() => {
         res.redirect("/");
     });
+};
+
+exports.profile = async (req, res, next) => {
+    locals.user = req.body;
+    console.log("11111", req.body);
+    console.log("22222", req.user);
+    // const {id, nick, pwd, name, birthday, phone, email, addr, gender} = req.body;
+    // try{
+
+    //     res.render("/profile",{id});
+
+    // } catch (error) {
+    //     console.error(error);
+    //     next(error);
+    // }
+    res.redirect("/profile");
 };

@@ -9,7 +9,6 @@ module.exports = () =>{
     });
 
     passport.deserializeUser((user_id, done) =>{
-        console.log("passport/index", user_id);
         users.findOne({
             where : {user_id},
             attributes: ['user_no','user_id','user_email'],

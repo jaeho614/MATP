@@ -16,8 +16,6 @@ dotenv.config();
 passportConfig();
 
 const pageRouter = require('./routes/page');
-// const loginRouter = require('./routes/login');
-const profileRouter = require('./routes/profile');
 const searchRouter = require('./routes/search');
 const authRouter = require("./routes/auth");
 
@@ -46,8 +44,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// app.use('/login', loginRouter);
-app.use('/profile', profileRouter);
 app.use('/search', searchRouter);
 app.use("/auth", authRouter);
 app.use('/', pageRouter);
