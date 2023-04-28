@@ -18,16 +18,15 @@
             <div id="nick">{{user.user_nick}}</div>
         </div>
         <div id="profileBox">
-            <div>이름: {{user.user_nm}}</div>
-            <div>
-                <div>전화번호: {{user.user_tel}}</div>
-                <button>수정</button>
-            </div>
-            <div>성별: {{user.user_gender}}</div>
-            <div>
-                <div>지역:  {{user.user_addr}}</div>
-                <button>수정</button>
-            </div>
+            <form id="profileTel">
+                <div>이름: {{user.user_nm}}</div>
+                <input class="hidden" id="inputTel" type="text" />
+                <div id="divTel">{{user.user_tel}}</div>
+                <div>성별: {{user.user_gender}}</div>
+                <input class="hidden" id="inputAddr" type="text" />
+                <div id="divAddr">{{user.user_addr}}</div>
+                <button id="modify" type="submit">수정</button>
+            </form>
         </div>
     </div>
     <div id="myInform">

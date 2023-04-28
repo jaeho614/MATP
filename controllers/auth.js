@@ -58,17 +58,20 @@ exports.logout = (req, res) => {
 };
 
 exports.profile = async (req, res, next) => {
-    locals.user = req.body;
-    console.log("11111", req.body);
-    console.log("22222", req.user);
-    // const {id, nick, pwd, name, birthday, phone, email, addr, gender} = req.body;
-    // try{
-
-    //     res.render("/profile",{id});
-
-    // } catch (error) {
+    const {user_id, user_tel, user_addr} = req.user;
+    // try {
+    //     const result = await users.update({
+    //         user_tel: user_tel,
+    //         user_addr: user_addr
+    //     }, {
+    //         where: {
+    //             user_id: user_id,
+    //         }
+    //     });
+        // console.log(result);
+        // res.json(result);
+        // res.render("")
+    // } catch(error) {
     //     console.error(error);
-    //     next(error);
     // }
-    res.redirect("/profile");
 };
