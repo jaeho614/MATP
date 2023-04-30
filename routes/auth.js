@@ -12,7 +12,7 @@ router.post("/login", isNotLoggedIn, login);
 
 router.post("/logout", isLoggedIn, logout);
 
-// router.patch("/profile", isLoggedIn, profile);
+router.post("/profile", isLoggedIn, profile);
 
 router.get("/kakao", passport.authenticate("kakao"));
 

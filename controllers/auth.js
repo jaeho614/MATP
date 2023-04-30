@@ -58,19 +58,12 @@ exports.logout = (req, res) => {
 };
 
 exports.profile = async (req, res, next) => {
-    const {user_id, user_tel, user_addr} = req.user;
+    const {tel, addr} = req.body;
     // try {
-    //     const result = await users.update({
-    //         user_tel: user_tel,
-    //         user_addr: user_addr
-    //     }, {
-    //         where: {
-    //             user_id: user_id,
-    //         }
-    //     });
-        // console.log(result);
-        // res.json(result);
-        // res.render("")
+    //     const inform = await users.update({
+    //                 user_tel: tel,
+    //                 user_addr: addr
+    //             })
     // } catch(error) {
     //     console.error(error);
     // }

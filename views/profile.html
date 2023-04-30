@@ -18,15 +18,16 @@
             <div id="nick">{{user.user_nick}}</div>
         </div>
         <div id="profileBox">
-            <form id="profileTel">
+            <form id="profileTel" action="/auth/profile" method="post">
                 <div>이름: {{user.user_nm}}</div>
-                <input class="hidden" id="inputTel" type="text" />
+                <input  id="inputTel" class="hidden" name=tel type="text" />
                 <div id="divTel">{{user.user_tel}}</div>
                 <div>성별: {{user.user_gender}}</div>
-                <input class="hidden" id="inputAddr" type="text" />
+                <input id="inputAddr" class="hidden" name=addr type="text" />
                 <div id="divAddr">{{user.user_addr}}</div>
-                <button id="modify" type="submit">수정</button>
+                <button id="modify_af" class="hidden" type="submit">수정완료</button>
             </form>
+            <button id="modify_bf">수정</button>
         </div>
     </div>
     <div id="myInform">
