@@ -18,6 +18,7 @@ passportConfig();
 const pageRouter = require('./routes/page');
 const searchRouter = require('./routes/search');
 const authRouter = require("./routes/auth");
+const profileRouter = require("./routes/profile");
 
 
 // view engine setup
@@ -44,6 +45,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+app.use('/profile', profileRouter);
 app.use('/search', searchRouter);
 app.use("/auth", authRouter);
 app.use('/', pageRouter);

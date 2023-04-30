@@ -6,7 +6,6 @@ const modify_bfBtn = document.querySelector("#modify_bf");
 const modify_afBtn = document.querySelector("#modify_af");
 
 
-// modify_bfBtn.addEventListener("click", btnSwitch);
 modify_bfBtn.addEventListener("click", modifyContent);
 
 let MODIFY = false;

@@ -4,7 +4,7 @@
         {% if user %}
         <div class="logedInform">{{user.user_id}}</div>
         <div>
-            <a href="/auth/profile">내정보</a>
+            <a href="/profile/{{user.user_id}}">내정보</a>
             <a href="/auth/logout">로그아웃</a>
         </div>
         {% else %}

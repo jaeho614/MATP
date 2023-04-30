@@ -12,7 +12,6 @@ router.post("/login", isNotLoggedIn, login);
 
 router.post("/logout", isLoggedIn, logout);
 
-router.post("/profile", isLoggedIn, profile);
 
 router.get("/kakao", passport.authenticate("kakao"));
 
@@ -33,11 +32,6 @@ router.get('/login', isNotLoggedIn, (req, res, next) => {
 router.get("/logout", (req, res, next) => {
     req.session.destroy();
     res.redirect("/");
-});
-
-router.get('/profile', isLoggedIn, (req, res, next) => {
-    const user = req.user;
-    res.render('profile', { title: 'profile', user });
 });
 
 module.exports = router;

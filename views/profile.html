@@ -18,7 +18,7 @@
             <div id="nick">{{user.user_nick}}</div>
         </div>
         <div id="profileBox">
-            <form id="profileTel" action="/auth/profile" method="post">
+            <form id="profileTel" action="/profile/{{user.user_id}}" method="post">
                 <div>이름: {{user.user_nm}}</div>
                 <input  id="inputTel" class="hidden" name=tel type="text" />
                 <div id="divTel">{{user.user_tel}}</div>

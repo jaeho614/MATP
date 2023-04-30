@@ -56,15 +56,3 @@ exports.logout = (req, res) => {
         res.redirect("/");
     });
 };
-
-exports.profile = async (req, res, next) => {
-    const {tel, addr} = req.body;
-    // try {
-    //     const inform = await users.update({
-    //                 user_tel: tel,
-    //                 user_addr: addr
-    //             })
-    // } catch(error) {
-    //     console.error(error);
-    // }
-};
