@@ -10,15 +10,15 @@ document.getElementById('userForm').addEventListener('submit', async (e) => {
     const addr = e.target.join_region.value;
 
     const isValidId = (id) => {
-        return /^[a-zA-Zㄱ-힣0-9-_.]{2,12}$/.test(id)
+        return /^[a-zA-Zㄱ-힣0-9-_.]{2,12}$/.test(id);
     }
 
     const isValidEmail = (email) => {
-        return /^[\w.%+\-]+@[\w.\-]+\.[A-Za-z]{2,3}$/.test(email)
+        return /^[\w.%+\-]+@[\w.\-]+\.[A-Za-z]{2,3}$/.test(email);
     }
 
     const IsValidatePhoneNumber = (phone) => {
-        return /^\d{2,3}-\d{3,4}-\d{4}$/.test(phone)
+        return /^\d{2,3}-\d{3,4}-\d{4}$/.test(phone);
       }
 
     if (!isValidId(id)) {
@@ -63,4 +63,4 @@ document.getElementById('userForm').addEventListener('submit', async (e) => {
     // e.target.name.checked = false;
   });
 
-  https://mniyunsu.github.io/js-regexp/
+  // https://mniyunsu.github.io/js-regexp/

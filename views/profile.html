@@ -26,8 +26,11 @@
                 <input id="inputAddr" class="hidden" name=addr type="text" />
                 <div id="divAddr">{{user.user_addr}}</div>
                 <button id="modify_af" class="hidden" type="submit">수정완료</button>
+                <button id="modify_bf">수정</button>
             </form>
-            <button id="modify_bf">수정</button>
+            <form id="withdraw" action="/profile/{{user.user_id}}" method="post">
+                <button id="withdrawBtn" type="submit">회원탈퇴</button>
+            </form>
         </div>
     </div>
     <div id="myInform">
