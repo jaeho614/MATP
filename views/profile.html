@@ -1,74 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/profile.css" />
     <title>{{title}}</title>
-</head>
-<body>
+  </head>
+  <body>
     <div>내정보</div>
     <div id="myProfile">
-        <div id="">
-            <div id="photoBox">
-                <div id="photo"></div>
-                <div id="changeBtn"></div>
-            </div>
-            <div id="nick">{{user.user_nick}}</div>
-        </div>
-        <div id="profileBox">
-            <form id="profileTel" action="/profile/{{user.user_id}}" method="post">
-                <div>이름: {{user.user_nm}}</div>
-                <input  id="inputTel" class="hidden" name=tel type="text" />
-                <div id="divTel">{{user.user_tel}}</div>
-                <div>성별: {{user.user_gender}}</div>
-                <input id="inputAddr" class="hidden" name=addr type="text" />
-                <div id="divAddr">{{user.user_addr}}</div>
-                <button id="modify_af" class="hidden" type="submit">수정완료</button>
-                <button id="modify_bf">수정</button>
-            </form>
-            <form id="withdraw" action="/profile/{{user.user_id}}" method="post">
-                <button id="withdrawBtn" type="submit">회원탈퇴</button>
-            </form>
-        </div>
+      <div id="">
+        <form id="photoBox" action="/profile/{{user.user_id}}" method="post" enctype="multipart/form-data">
+          {% if user.user_img %}
+          <img id="photo" src="/images/{{user.user_img}}" />
+          {% else %}
+          <img id="photo" src="/images/lion.jpg" />
+          {% endif %}
+          <label id="changeBtn" for="changeInput"></label>
+          <input class="hidden" id="changeInput" name="myPhoto" type="file" />
+          <button id="myPhotoUp" type="submit">업로드</button>
+        </form>
+        <div id="nick">{{user.user_nick}}</div>
+      </div>
+      <div id="profileBox">
+        <form id="profileTel" action="/profile/{{user.user_id}}" method="post">
+          <div>이름: {{user.user_nm}}</div>
+          <input id="inputTel" class="hidden" name="tel" type="text" />
+          <div id="divTel">{{user.user_tel}}</div>
+          <div>성별: {{user.user_gender}}</div>
+          <input id="inputAddr" class="hidden" name="addr" type="text" />
+          <div id="divAddr">{{user.user_addr}}</div>
+          <button id="modify_af" class="hidden" type="submit">수정완료</button>
+          <button id="modify_bf">수정</button>
+        </form>
+        <a id="withdrawBtn" href="/profile/{{user.user_id}}/withdraw"
+          >회원탈퇴</a
+        >
+      </div>
     </div>
-    <div id="myInform">
+    <!-- <div id="myInform">
+      <div>
+        <button>댓글</button>
+        <button>친구</button>
+      </div>
+      <div>
+        댓글
         <div>
-            <button>댓글</button>
-            <button>친구</button>
+          <div>가게이름</div>
+          <div>별점</div>
+          <div>좋아요</div>
+          <div>사진</div>
         </div>
         <div>
-            댓글
-            <div>
-                <div>가게이름</div>
-                <div>별점</div>
-                <div>좋아요</div>
-                <div>사진</div>
-            </div>
-            <div>
-                <div>지난달</div>
-                <div>볶음밥</div>
-            </div>
-            <div>
-                정말 맛있어요
-            </div>
-            <button>삭제</button>
+          <div>지난달</div>
+          <div>볶음밥</div>
         </div>
-        <div>--------------------</div>
+        <div>정말 맛있어요</div>
+        <button>삭제</button>
+      </div>
+      <div>--------------------</div>
+      <div>
+        친구
         <div>
-            친구
-            <div>
-                <div>
-                    <div>이름</div>
-                    <div>사진</div>
-                    <div>링크 보내기</div>
-                    <div>쪽지 보내기</div>
-                    <button>친구삭제</button>
-                </div>
-            </div>
+          <div>
+            <div>이름</div>
+            <div>사진</div>
+            <div>링크 보내기</div>
+            <div>쪽지 보내기</div>
+            <button>친구삭제</button>
+          </div>
         </div>
-    </div>
-</body>
-<script src="/javascripts/profile.js"></script>
+      </div>
+    </div> -->
+  </body>
+  <script src="/javascripts/profile.js"></script>
 </html>

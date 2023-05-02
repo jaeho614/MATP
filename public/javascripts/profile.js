@@ -4,12 +4,7 @@ const inputAddr = document.querySelector("#inputAddr");
 const divAddr = document.querySelector("#divAddr");
 const modify_bfBtn = document.querySelector("#modify_bf");
 const modify_afBtn = document.querySelector("#modify_af");
-const withdrawBtn = document.querySelector("#withdrawBtn");
 
-withdrawBtn.addEventListener("click", (event) => {
-    event.preventDefault();
-    alert("회원탈퇴 하시겠습니까?");
-})
 modify_bfBtn.addEventListener("click", modifyContent);
 
 let MODIFY = false;

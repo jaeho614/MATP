@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <h1>{{user.user_id}}님 정말로 MATP을 탈퇴하시겠습니까?</h1>
+    <form action="/profile/{{user.user_id}}/withdraw" method="post">
+      <button type="submit">네</button>
+    </form>
+    <a href="/profile/{{user.user_id}}">아니오</a>
+  </body>
+</html>
