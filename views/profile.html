@@ -11,7 +11,7 @@
     <div>내정보</div>
     <div id="myProfile">
       <div id="">
-        <form id="photoBox" action="/profile/{{user.user_id}}" method="post" enctype="multipart/form-data">
+        <form id="photoBox" action="/profile/image/{{user.user_id}}" method="post" enctype="multipart/form-data">
           {% if user.user_img %}
           <img id="photo" src="/images/{{user.user_img}}" />
           {% else %}

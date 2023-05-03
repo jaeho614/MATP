@@ -18,11 +18,23 @@ const upload = multer({
       done(null, path.basename(file.originalname, ext) + Date.now() + ext);
     },
   }),
+  fileFilter : (req, file, cb) => {
+    const typeArray = file.mimetype.split('/');
+    const fileType = typeArray[1];
+
+    if (fileType == 'jpg' || fileType == 'png' || fileType == 'jpeg' || fileType == 'gif' || fileType == 'webp') {
+        req.fileValidationError = null;
+        cb(null, true);
+    } else {
+        req.fileValidationError = "jpg,jpeg,png,gif,webp 파일만 업로드 가능합니다.";
+        cb(null, false)
+    }
+},
   limits: { fileSize: 5 * 1024 * 1024},
 });
 
-router.post("/:id", isLoggedIn, profile, upload.single("myPhoto"), async (req, res) => {
-  console.log("file========", req.file);
+router.post("/:id", isLoggedIn, profile);
+router.post("/image/:id", isLoggedIn, upload.single("myPhoto"), async (req, res) => {
   const id = req.user.user_id;
   const img = req.file.filename;
   try{
@@ -40,8 +52,6 @@ router.post("/:id/withdraw", isLoggedIn, withdraw);
 
 router.get("/:id", isLoggedIn, (req, res, next) => {
   const user = req.user;
-  console.log("/============>", user.user_img);
-  
   res.render("profile", { title: "profile", user });
 });
 

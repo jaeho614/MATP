@@ -1,21 +1,5 @@
-const { board } =require("../models");
-
-exports.renderProfile = (req, res) => {
-    res.render("profile", {title: "profile"});
-}
-
-exports.renderJoin = (req, res) => {
-    res.render("join", {title: "join"});
-};
-
-exports.renderLogin = (req, res) => {
-    res.render("login", {title: "login"});
-};
-
-exports.renderMain = (req, res, next) => {
-    res.render("index", {title: "MATP"});
-};
-
+const { board } = require('../models');
+//페이지네이션 및 게시판 목록 구현
 exports.renderBoard = async (req, res, next) => {
     try {
         const PAGE_SIZE = 5;
@@ -29,10 +13,12 @@ exports.renderBoard = async (req, res, next) => {
             raw : true,
             order: [
                 ["board_no", "DESC"],
+
             ],
             offset,
             limit: PAGE_SIZE,
         });
+
         return res.render("board", {
             boards,
             // imgObject,

@@ -4,7 +4,6 @@ exports.profile = async (req, res, next) => {
     const {tel, addr} = req.body;
     const {id} = req.params;
     try {
-      if(tel || addr){
         await users.update({
           user_tel: tel,
           user_addr: addr
@@ -12,8 +11,6 @@ exports.profile = async (req, res, next) => {
             where: {user_id: id} 
         });
         return res.redirect(`/profile/${id}`);
-      };
-      next();
     } catch(error) {
         console.error(error);
         next(error);

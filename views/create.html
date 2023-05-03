@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판등록</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <style>
+        div.preview-images > img {
+            width: 30%;
+        }
+    </style>
+<body>
+<div id="board">
+    <form method="post" enctype="multipart/form-data">
+        제목: <input type="text" name="board_title" id="title">
+<!--        가게이름: <input type="text" name="store_name" id="store_name">-->
+<!--        닉네임: <input type="text" name="nick" id="nick">-->
+        내용: <input type="text" name="board_content" id="content">
+        <div class="form-group">
+            <label for="example-input-file"> </label>
+            <input type="file" name="multi-files" multiple id="input-multi-files" class="form-control-file border"/>
+        </div>
+        <button type="submit" class="btn btn-primary">등록</button>
+    </form>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="preview-images"></div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/javascripts/create.js"></script>
+</body>
+</html>

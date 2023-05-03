@@ -27,10 +27,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       comment: "내용"
     },
-    board_del: {
-      type: DataTypes.TINYINT,
-      allowNull: false,
-      comment: "삭제"
+    img: {
+      type: DataTypes.JSON,
+      allowNull: true
     }
   }, {
     sequelize,

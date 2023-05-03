@@ -16,10 +16,9 @@ dotenv.config();
 passportConfig();
 
 const pageRouter = require('./routes/page');
-const searchRouter = require('./routes/search');
+const boardRouter = require("./routes/board");
 const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
-
 
 // view engine setup
 app.set("port", process.env.PORT);
@@ -46,11 +45,16 @@ app.use(passport.session());
 
 
 app.use('/profile', profileRouter);
-app.use('/search', searchRouter);
+app.use('/board', boardRouter);
 app.use("/auth", authRouter);
 app.use('/', pageRouter);
 
-app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/img", express.static(path.join(__dirname, "public/images")));
+app.use(express.static('public', {
+    setHeaders: function (res, path, stat) {
+      res.set('Content-Type', 'text/css');
+    }
+  }));
 
 // sequelize.sync({force: false})
 //     .then(() => {
@@ -59,9 +63,6 @@ app.use("/", express.static(path.join(__dirname, "public")));
 //     .catch((err) => {
 //         console.log(err);
 //     });
-
-
-
 
 app.use((err, req, res, next) => {
     console.error(err);

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>목록</title>
+    <!-- <link rel="stylesheet" href="/stylesheets/index.css" /> -->
+    <link rel="stylesheet" href="/stylesheets/board.css" />
+</head>
+<body>
+<!-- {% include "header.html" %} -->
+<!-- {% include "navbar.html" %} -->
+<div id="a">
+    <h1>추천맛집</h1>
+    <hr>
+
+    <div class="container">
+        <div class="row">
+
+            {% for i in range(0, boards.length) %}
+            <a href="/board/detail/{{boards[i].board_no}}">
+                <div class="col-sm-8 mt-3">
+                    <div id="c">
+                        <div id="c1">
+                            <h1 class="title">{{boards[i].board_title}}</h1>
+                            <div id="c2">
+                                <div id="c3">
+                                    <h2 class="star">{{boards[i].star}}</h2>
+                                    <h2 class="store">{{boards[i].store_name}}</h2>
+                                </div>
+                                {% if boards[i].img.length > 0 %}
+                                <div><img class="preview-images" width=100 src="{{ boards[i].img[0].url }}" accept="image/*"></div>
+                                {% endif %}
+                                 </a>
+                             </div>
+
+                        </div>
+                        <textarea name="" id="" cols="30" rows="10">{{boards[i].board_content}}</textarea>
+                        <div><button><a href="/board/update/{{boards[i].board_no}}">수정</a></button>
+                        <form action="/board/delete/{{boards[i].board_no}}" method="post"><button>삭제</button></form>
+                        </div>
+                     </div>
+                {% endfor %}
+                </div>
+            </div>
+        {% if user %}
+        <button><a href="/board/create/{{user.user_id}}">등록</a></button>
+        {% else %}
+        <button><a href="/board/create">등록</a></button>
+        {% endif %}
+    <div>
+    {% set start = ((currentPage - 1) // 10) * 10 + 1 %}
+    {% set end = ((currentPage - 1) // 10 + 1) * 10 %}
+
+    {% if start > 1 %}
+    <a href="/board?page=1">첫 페이지</a>
+    {% endif %}
+
+    {% if currentPage > 10 %}
+    <a href="/board?page={{ start - 1 }}">이전</a>
+    {% endif %}
+
+    {% if end > totalPages %}
+    {% set end = totalPages %}
+    {% endif %}
+
+    {% for i in range(start, end + 1) %}
+    {% if i == currentPage %}
+    <strong style="font-size: 30px">{{ i }}</strong>
+    {% else %}
+    <a href="/board?page={{ i }}">{{ i }}</a>
+    {% endif %}
+    {% endfor %}
+
+    {% if end < totalPages %}
+    <a href="/board?page={{ end + 1 }}">다음</a>
+    {% endif %}
+
+    {% if end < totalPages - 9 %}
+    <a href="/board?page={{ totalPages }}">마지막 페이지</a>
+    {% endif %}
+    </div>
+</div>
+{% include "footer.html" %}
+</body>
+<!-- <script src="/javascripts/index.js"></script> -->
+</html>

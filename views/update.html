@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>수정</title>
+</head>
+<body>
+<div id="board">
+    <form action="/board/update/{{boards.board_no}}" method="post">
+
+        제목: <input type="text" name="board_title" value="{{boards.board_title}}" id="title">
+<!--        가게이름: <input type="text" name="store_name" value="{{boards.store_name}}" id="store_name">-->
+<!--        닉네임: <input type="text" name="nick" value="{{boards.nick}}" id="nick">-->
+        내용: <input type="text" name="board_content" value="{{boards.board_content}}" id="content">
+<!--        <div class="form-group">-->
+<!--            <label for="example-input-file"> </label>-->
+<!--            <input type="file" name="multi-files" multiple id="input-multi-files" value="" class="form-control-file border"/>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-sm-12">-->
+<!--                <div class="preview-images"></div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <button type="submit" class="btn btn-primary">수정</button>
+    </form>
+</div>
+<script src="/javascripts/update.js"></script>
+</body>
+</html>
