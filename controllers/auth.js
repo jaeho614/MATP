@@ -22,7 +22,6 @@ exports.join = async(req, res, next) => {
             user_birthday: birthday,
             user_email: email,
             user_addr: addr,
-            created_at: 1,
             user_leave: 1,
         });
         return res.redirect("/");

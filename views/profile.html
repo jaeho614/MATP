@@ -39,40 +39,26 @@
         >
       </div>
     </div>
-    <!-- <div id="myInform">
+    <div>
+      <div>내가 쓴 글</div>
       <div>
-        <button>댓글</button>
-        <button>친구</button>
+        {% if contents.length > 1 %}
+          {% for i in range(0, contents.length) %}
+            <div>{{content[i].board_title}}</div>
+            <div>{{content[i].board_content}}</div>
+            {% for img in content[i].img %}
+              {% if img === '' %}
+            <img src="/images/lion.jpg" />
+              {% else %}
+            <img src="/images/{{img.filename}}" />
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        {% else %}
+          <div>등록한 글이 없습니다.</div>
+        {% endif %}
       </div>
-      <div>
-        댓글
-        <div>
-          <div>가게이름</div>
-          <div>별점</div>
-          <div>좋아요</div>
-          <div>사진</div>
-        </div>
-        <div>
-          <div>지난달</div>
-          <div>볶음밥</div>
-        </div>
-        <div>정말 맛있어요</div>
-        <button>삭제</button>
-      </div>
-      <div>--------------------</div>
-      <div>
-        친구
-        <div>
-          <div>
-            <div>이름</div>
-            <div>사진</div>
-            <div>링크 보내기</div>
-            <div>쪽지 보내기</div>
-            <button>친구삭제</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
+    </div>
   </body>
   <script src="/javascripts/profile.js"></script>
 </html>
