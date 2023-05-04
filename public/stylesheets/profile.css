@@ -42,3 +42,15 @@ body {
     height: 30px;
     border-radius: 15px;
 }
+
+#myPhotoUp {
+    position: relative;
+    top: 67px;
+    right: 25px;
+    border: none;
+    cursor: pointer;
+    background-color: blue;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}

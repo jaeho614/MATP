@@ -35,3 +35,26 @@ function modifyContent(event){
         MODIFY = false;
     }
 }
+
+const changeBtn = document.querySelector("#changeBtn");
+const myPhotoUp = document.querySelector("#myPhotoUp");
+const changeInput = document.querySelector("#changeInput");
+
+changeBtn.addEventListener("click",changeBtnClick);
+
+function changeBtnClick(){
+    document.body.onfocus = uploadImg;
+}
+
+function uploadImg(){
+    if(changeInput.value.length){
+        // console.log("파일 업로드 함");
+        changeBtn.className = "hidden";
+        myPhotoUp.className = "";
+    } else {
+        // console.log("파일 업로드 취소");
+        changeBtn.className = "";
+        myPhotoUp.className = "hidden";
+    }
+    document.body.onfocus = null;
+}

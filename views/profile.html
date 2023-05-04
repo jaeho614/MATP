@@ -19,7 +19,7 @@
           {% endif %}
           <label id="changeBtn" for="changeInput"></label>
           <input class="hidden" id="changeInput" name="myPhoto" type="file" />
-          <button id="myPhotoUp" type="submit">업로드</button>
+          <button class="hidden" id="myPhotoUp" type="submit"></button>
         </form>
         <div id="nick">{{user.user_nick}}</div>
       </div>
@@ -42,15 +42,13 @@
     <div>
       <div>내가 쓴 글</div>
       <div>
-        {% if contents.length > 1 %}
+        {% if contents.length > 0 %}
           {% for i in range(0, contents.length) %}
-            <div>{{content[i].board_title}}</div>
-            <div>{{content[i].board_content}}</div>
-            {% for img in content[i].img %}
-              {% if img === '' %}
-            <img src="/images/lion.jpg" />
-              {% else %}
-            <img src="/images/{{img.filename}}" />
+            <div>{{contents[i].board_title}}</div>
+            <div>{{contents[i].board_content}}</div>
+            {% for img in contents[i].img %}
+              {% if img %}
+              <img src="/images/{{img.filename}}" />
               {% endif %}
             {% endfor %}
           {% endfor %}

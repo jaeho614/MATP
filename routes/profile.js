@@ -57,22 +57,6 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
     raw: true,
     where: {user_no: userNo}
   });
-
-
-  // for (content of contents){
-  //   const {url, filename} = {...content.img[0]};
-  //   console.log(url, filename);
-  // }
-  // for(d in contents) {
-  //   console.log(d);
-  //   for(a of d){
-  //     console.log(a);
-  //   }
-  // }
-
-  // contents.map(content => (
-  //   content.img.map(image => items.push(content.board_title, content.board_content, image.filename))
-  // ));
   res.render("profile", { title: "profile", user, contents });
 });
 
