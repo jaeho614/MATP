@@ -4,6 +4,7 @@ const { users } = require("../models");
 
 exports.join = async(req, res, next) => {
     const {id, nick, pwd, name, birthday, phone, email, addr, gender} = req.body;
+
     try{
         const exUser = await users.findOne({ where: {user_id: id}});
         if (exUser) {
@@ -29,6 +30,26 @@ exports.join = async(req, res, next) => {
         console.error(error);
         return next(error);
     }
+}
+
+// exports.idChk = async (req, res, next) => {
+//     let {id} = req.body;
+    
+//     try{
+//         const exUser = await users.findOne({ where: {user_id: id}});
+
+//         if (exUser) {
+//             console.log("이미 존재하는 아이디입니다.");
+//         } else {
+//             console.log("사용가능한 아이디 입니다.");
+//         };
+//     } catch(error) {
+//         console.error(error);
+//     };
+// }
+
+exports.nickChk = async (req, res, next) => {
+    
 }
 
 exports.login = (req, res, next) => {

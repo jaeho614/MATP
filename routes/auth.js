@@ -2,11 +2,13 @@ const express = require("express");
 const passport = require("passport");
 
 const {isLoggedIn, isNotLoggedIn} = require("../middlewares");
-const {join, login, logout, profile} = require("../controllers/auth");
+const {join, login, logout, idChk, nickChk} = require("../controllers/auth");
 
 const router = express.Router();
 
 router.post("/join", isNotLoggedIn, join);
+// router.post("/idChk/join", idChk);
+// router.post("/nickChk/join", nickChk);
 
 router.post("/login", isNotLoggedIn, login);
 

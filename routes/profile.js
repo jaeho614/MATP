@@ -2,7 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 
-const { isLoggedIn, isNotLoggedIn } = require("../middlewares");
+const { isLoggedIn } = require("../middlewares");
 const { profile, withdraw } = require("../controllers/profile");
 const { users, board } = require("../models");
 

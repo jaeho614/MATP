@@ -64,13 +64,23 @@
 
 //   // https://mniyunsu.github.io/js-regexp/
 
-const id = document.querySelector("#join_id");
-const idChkBtn = document.querySelector("#idChkBtn");
 
-idChkBtn.addEventListener("click",idChkFn);
+const joinPassword = document.querySelector("#join_password");
+const passwordChk = document.querySelector("#password-chk");
 
-function idChkFn(event){
-    event.preventDefault();
-    const userId = id.value;
-    console.log(userId);
-}
+function checkUserPassword() {
+    const alertPassword = document.querySelector("#pwChk");
+    let password = joinPassword.value;
+    let chkPassword = passwordChk.value;
+    if (chkPassword === "" || password !== chkPassword) {
+      alertPassword.innerHTML =
+        "<span style=color:red>비밀번호가 일치하지 않습니다.</span>";
+    } else {
+      alertPassword.innerHTML =
+        "<span style=color:green>비밀번호가 일치합니다.</span>";
+    }
+  }//자세하게 나눠야함
+  
+passwordChk.addEventListener("input", checkUserPassword);
+
+
