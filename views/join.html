@@ -11,101 +11,82 @@
     <div id="joinTitle">
         <a id="title" href="/">M A T P</a>
     </div>
-    <form id="userForm" action="/auth/join" method="post">
+    <form id="userForm">
         <div id="joinBody">
             <div class="essential content">
                 <label for="join_id">* 아이디</label>
-                <input id="join_id" type="text" placeholder=" ID" name="id" />
-                <button id="idChkBtn" type="submit" formaction="/auth/idChk/join">ID 중복확인</button>
+                <input id="join_id" type="text" placeholder="ID" name="id" />
+                <button id="idChkBtn">ID 중복확인</button>
             </div>
             <span class="informChk" id="idChk">&nbsp;</span>
             <div class="essential content">
                 <label for="join_nick">* 닉네임</label>
-                <input id="join_nick" type="text" placeholder=" 닉네임" name="nick" />
-                <button id="nickChkBtn" type="submit" formaction="/auth/nickChk/join">닉네임 중복확인</button>
+                <input id="join_nick" type="text" placeholder="닉네임" name="nick" />
+                <button id="nickChkBtn">닉네임 중복확인</button>
             </div>
             <span class="informChk" id="nickChk">&nbsp;</span>
             <div class="essential content">
                 <label for="join_password">* 비밀번호</label>
-                <input id="join_password" type="password" placeholder=" 비밀번호" name="pwd" />
+                <input id="join_password" type="password" placeholder="비밀번호" name="pwd" />
             </div>
             <div class="essential content">
-                <label for="password-chk">&nbsp; &nbsp;비밀번호 확인</label>
-                <input id="password-chk" type="password" placeholder=" 비밀번호 확인" name="password-chk" />
+                <label for="password_chk">&nbsp; &nbsp;비밀번호 확인</label>
+                <input id="password_chk" type="password" placeholder="비밀번호 확인" name="password-chk" />
             </div>
             <span class="informChk" id="pwChk">&nbsp;</span>
             <div class="essential content">
                 <label for="join_name">* 이름</label>
-                <input id="join_name" type="text" placeholder=" 이름" name="name" />
+                <input id="join_name" type="text" placeholder="이름" name="name" />
             </div>
             <div class="essential content">
                 <label for="join_birthday">* 생년월일</label>
-                <input id="join_birthday" type="text" placeholder=" 생년월일" name="birthday" />
+                <input id="join_birthday" type="text" placeholder="1900-00-00" name="birthday" />
             </div>
             <div class="essential content">
                 <label for="join_phone">* 전화번호</label>
-                <input id="join_phone" type="text" placeholder=" 000-0000-0000" name="phone" />
-                <button type="submit">인증번호 받기</button>
+                <input id="join_phone" type="text" maxlength="11" placeholder="010-0000-0000" name="phone" />
+                <button id="phoneChkBtn">인증번호 받기</button>
             </div>
             <div class="essential content">
                 <label for="phoneChk"></label>
-                <input type="text" placeholder=" 인증번호 입력" />
+                <input type="text" placeholder="인증번호 입력" />
             </div>
             <div class="essential content">
                 <label for="join_email">* 이메일</label>
-                <input id="join_email" type="email" placeholder=" example@email.com" name="email" />
+                <input id="join_email" type="email" placeholder="example@email.com" name="email" />
+                <button id="emailChkBtn">이메일 중복확인</button>
             </div>
+            <span class="informChk" id="emailChk">&nbsp;</span>
             <div class="content">
                 <label for="join_region">&nbsp; &nbsp;지역</label>
                 <input id="join_region" type="text" name="addr" />
             </div>
             <div class="content">
-                <label for="join_gender">&nbsp; &nbsp;성별</label>
+                <label for="genderBox">&nbsp; &nbsp;성별</label>
                 <div id="genderBox">
                     남자
                         <input
                           type="radio"
-                          name="sex"
-                          value="male"
+                          name="gender"
+                          value="남자"
+                          onclick="getGender(event)"
                         />
-                        여자
+                    여자
                         <input
                           type="radio"
-                          name="sex"
-                          value="female "
+                          name="gender"
+                          value="여자"
+                          onclick="getGender(event)"
                         />
                 </div>
             </div>
         </div>
         <div id="btnBox">
-            <button class="joinBtn" id="join_btn" type="submit" formaction="/auth/join">가입하기</button>
+            <button class="joinBtn" id="join_btn">가입하기</button>
             <button class="joinBtn" id="cancel_btn">가입취소</button>
         </div>
     </form>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/javascripts/join.js"></script>
-    <script>
-        const joinId = document.querySelector("#join_id");
-        const idChkBtn = document.querySelector("#idChkBtn");
-
-        idChkBtn.addEventListener("click", async (event) => {
-            try{
-                let res = await axios({
-                    method: "POST",
-                    url: "http://localhost:3333/auth/idChk/join",
-                    data: {
-                        newId: id.value,
-                    }
-                });
-                console.log(res);
-                document.write(JSON.stringify(res));
-            }catch(err){
-                console.log(err);
-                throw new Error(err);
-            }
-        });
-    </script>
 </body>
 </html>
-
-<!-- https://inpa.tistory.com/entry/AXIOS-%F0%9F%93%9A-%EC%84%A4%EC%B9%98-%EC%82%AC%EC%9A%A9 -->

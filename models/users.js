@@ -45,8 +45,8 @@ module.exports = function(sequelize, DataTypes) {
       comment: "프로필 사진"
     },
     user_gender: {
-      type: DataTypes.STRING(1),
-      allowNull: false,
+      type: DataTypes.STRING(4),
+      allowNull: true,
       comment: "성별"
     },
     user_birthday: {

@@ -2,17 +2,23 @@ const express = require("express");
 const passport = require("passport");
 
 const {isLoggedIn, isNotLoggedIn} = require("../middlewares");
-const {join, login, logout, idChk, nickChk} = require("../controllers/auth");
+const {join, login, logout, idChk, nickChk, emailChk, phoneChk} = require("../controllers/auth");
 
 const router = express.Router();
 
 router.post("/join", isNotLoggedIn, join);
-// router.post("/idChk/join", idChk);
-// router.post("/nickChk/join", nickChk);
+router.post("/idChk/join", idChk);
+router.post("/nickChk/join", nickChk);
+router.post("/phoneChk/join", phoneChk);
+router.post("/emailChk/join", emailChk);
 
 router.post("/login", isNotLoggedIn, login);
 
 router.post("/logout", isLoggedIn, logout);
+
+router.post("/2/join", isNotLoggedIn, (req, res, next) => {
+    console.log(req.body);
+})
 
 
 router.get("/kakao", passport.authenticate("kakao"));
