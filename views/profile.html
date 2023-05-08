@@ -8,9 +8,9 @@
     <title>{{title}}</title>
   </head>
   <body>
-    <div>내정보</div>
+    <div id="title">My Profile</div>
     <div id="myProfile">
-      <div id="">
+      <div id="profilePhoto">
         <form id="photoBox" action="/profile/image/{{user.user_id}}" method="post" enctype="multipart/form-data">
           {% if user.user_img %}
           <img id="photo" src="/images/{{user.user_img}}" />
@@ -20,17 +20,24 @@
           <label id="changeBtn" for="changeInput"></label>
           <input class="hidden" id="changeInput" name="myPhoto" type="file" />
           <button class="hidden" id="myPhotoUp" type="submit"></button>
+          <div id="nick">{{user.user_nick}}</div>
         </form>
-        <div id="nick">{{user.user_nick}}</div>
       </div>
       <div id="profileBox">
         <form id="profileTel" action="/profile/{{user.user_id}}" method="post">
-          <div>이름: {{user.user_nm}}</div>
-          <input id="inputTel" class="hidden" name="tel" type="text" />
-          <div id="divTel">{{user.user_tel}}</div>
-          <div>성별: {{user.user_gender}}</div>
-          <input id="inputAddr" class="hidden" name="addr" type="text" />
-          <div id="divAddr">{{user.user_addr}}</div>
+          <div>아이디 :{{user.user_id}}</div>
+          <div>이름 :{{user.user_nm}}</div>
+          <div class="changeInput">
+            전화번호 :
+            <div id="divTel">{{user.user_tel}}</div>
+            <input id="inputTel" class="hidden" name="tel" type="text" />
+          </div>
+          <div>성별 :{{user.user_gender}}</div>
+          <div class="changeInput">
+            지역 :
+            <div id="divAddr">{{user.user_addr}}</div>
+            <input id="inputAddr" class="hidden" name="addr" type="text" />
+          </div>
           <button id="modify_af" class="hidden" type="submit">수정완료</button>
           <button id="modify_bf">수정</button>
         </form>
@@ -39,23 +46,37 @@
         >
       </div>
     </div>
-    <div>
-      <div>내가 쓴 글</div>
-      <div>
-        {% if contents.length > 0 %}
-          {% for i in range(0, contents.length) %}
-            <div>{{contents[i].board_title}}</div>
-            <div>{{contents[i].board_content}}</div>
-            {% for img in contents[i].img %}
-              {% if img %}
-              <img src="/images/{{img.filename}}" />
-              {% endif %}
-            {% endfor %}
+    <div id="listTitle">
+      <button>내 글</button>
+      <button>댓 글</button>
+      <button>좋아요</button>
+    </div>
+    <div id="myList">
+      {% if contents.length > 0 %}
+        {% for i in range(0, contents.length) %}
+          {% for img in contents[i].img %}
+            {% if img %}
+              <div class="myWriting">
+                <img class="writingImg" src="/images/{{img.filename}}" />
+                <div class="writingBox">
+                  <div class="writingTitle">제목 : {{contents[i].board_title}}</div>
+                  <div class="writingContent">{{contents[i].board_content}}</div>
+                </div>
+              </div>
+            {% else %}
+              <div class="myWriting">
+                <img class="basicImg" src="/images/lion.jpg" />
+                <div class="writingBox">
+                  <div class="writingTitle">제목 : {{contents[i].board_title}}</div>
+                  <div class="writingContent">{{contents[i].board_content}}</div>
+                </div>
+              </div>
+            {% endif %}
           {% endfor %}
-        {% else %}
-          <div>등록한 글이 없습니다.</div>
-        {% endif %}
-      </div>
+        {% endfor %}
+      {% else %}
+        <div>등록한 글이 없습니다.</div>
+      {% endif %}
     </div>
   </body>
   <script src="/javascripts/profile.js"></script>
