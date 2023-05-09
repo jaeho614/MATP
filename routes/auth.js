@@ -16,11 +16,6 @@ router.post("/login", isNotLoggedIn, login);
 
 router.post("/logout", isLoggedIn, logout);
 
-router.post("/2/join", isNotLoggedIn, (req, res, next) => {
-    console.log(req.body);
-})
-
-
 router.get("/kakao", passport.authenticate("kakao"));
 
 router.get("/kakao/callback", passport.authenticate("kakao", {

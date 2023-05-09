@@ -233,6 +233,7 @@ function getGender(event){
 const joinBtn = document.querySelector("#join_btn");
 
 joinBtn.addEventListener("click", async (event) => {
+    // let form = new FormData();
     const joinRegion = document.querySelector("#join_region");
     const id = joinId.value;
     const nick = joinNick.value;
@@ -243,40 +244,49 @@ joinBtn.addEventListener("click", async (event) => {
     const email = joinEmail.value;
     const region = joinRegion.value;
 
+    // form.append("id", id);
+    // form.append("nick", nick);
+    // form.append("password", password);
+    // form.append("name", name);
+    // form.append("birth", birth);
+    // form.append("phone", phone);
+    // form.append("email", email);
+    // form.append("region", region);
+    // form.append("gender", gender);
+    // console.log(form);
     if(!idValid){
-        event.preventDefault();
         alert("ID 중복확인을 해주세요.");
+        // return (event.preventDefault(), alert("ID 중복확인을 해주세요."));
     }
     if(!nickValid){
-        event.preventDefault();
-        return alert("닉네임 중복확인을 해주세요.");
+        // return (event.preventDefault(), alert("닉네임 중복확인을 해주세요."));
+        alert("닉네임 중복확인을 해주세요.");
     }
     if(!pwdValid){
-        event.preventDefault();
+        // return (event.preventDefault(), alert("비밀번호가 일치하지 않습니다."));
         alert("비밀번호가 일치하지 않습니다.");
     }
     if(!nameValid){
-        event.preventDefault();
+        // return (event.preventDefault(), alert("이름을 입력해주세요."));
         alert("이름을 입력해주세요.");
     }
     if(!birthValid){
-        event.preventDefault();
+        // return (event.preventDefault(), alert("생년월일을 입력해주세요"));
         alert("생년월일을 입력해주세요");
     }
     if(!phoneValid){
-        event.preventDefault();
+        // return (event.preventDefault(), alert("전화번호 인증을 받아야합니다."));
         alert("전화번호 인증을 받아야합니다.");
     }
     if(!emailValid){
-        event.preventDefault();
+        // return (event.preventDefault(), alert("이메일 중복확인을 해주세요."));
         alert("이메일 중복확인을 해주세요.");
     }
     event.preventDefault();
     if(idValid && nickValid && pwdValid && nameValid && birthValid && phoneValid && emailValid){
         return await axios
             .post("/auth/join", {
-                id: id, nick: nick, pwd: password, name: name, birthday: birth, phone: phone, email: email, addr: region, gender: gender
-            })
+                id: id, nick: nick, pwd: password, name: name, birthday: birth, phone: phone, email: email, addr: region, gender: gender})
             .then(() => {
                 location.href = "/";
             })
@@ -285,3 +295,9 @@ joinBtn.addEventListener("click", async (event) => {
             })
     }
 });
+
+const cancleBtn = document.querySelector("#cancel_btn");
+
+cancleBtn.addEventListener("click", (event) => {
+    location.href = "/";
+})

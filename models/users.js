@@ -77,7 +77,17 @@ module.exports = function(sequelize, DataTypes) {
     user_leave: {
       type: DataTypes.TINYINT,
       allowNull: false,
+      defaultValue: 0,
       comment: "회원탈퇴여부"
+    },
+    snsId: {
+      type: DataTypes.STRING(50),
+      allowNull: true
+    },
+    provider: {
+      type: DataTypes.ENUM('local','kakao'),
+      allowNull: false,
+      defaultValue: "local"
     }
   }, {
     sequelize,

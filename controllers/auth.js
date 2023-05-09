@@ -4,7 +4,7 @@ const { users } = require("../models");
 
 exports.join = async(req, res, next) => {
     const {id, nick, pwd, name, birthday, phone, email, addr, gender} = req.body;
-    
+    console.log("req==========>",req.body);
     try{
         const hash = await bcrypt.hash(pwd, 12);
         await users.create({
