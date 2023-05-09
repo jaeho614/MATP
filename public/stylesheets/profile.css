@@ -26,6 +26,17 @@ body {
     background-color: white;
 }
 
+#goToBack {
+    position: relative;
+    left: 830px;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    color:black;
+    background-color: white;
+}
+
 #myProfile {
     display: flex;
     flex-direction: row;

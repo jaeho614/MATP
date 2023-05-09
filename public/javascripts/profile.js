@@ -58,3 +58,9 @@ function uploadImg(){
     }
     document.body.onfocus = null;
 }
+
+const goToBack = document.querySelector("#goToBack");
+
+goToBack.addEventListener("click", (event) => {
+    history.back();
+})

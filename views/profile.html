@@ -8,7 +8,13 @@
     <title>{{title}}</title>
   </head>
   <body>
-    <div id="title">My Profile</div>
+    <div id="title">My Profile
+      <button id="goToBack" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+        </svg>        
+      </button>
+    </div>
     <div id="myProfile">
       <div id="profilePhoto">
         <form id="photoBox" action="/profile/image/{{user.user_id}}" method="post" enctype="multipart/form-data">
@@ -53,26 +59,26 @@
     </div>
     <div id="myList">
       {% if contents.length > 0 %}
-        {% for i in range(0, contents.length) %}
-          {% for img in contents[i].img %}
-            {% if img %}
+        {% for item in contents %}
+          {% if item.img.length > 0 %}
+            {% for img in item.img %}
               <div class="myWriting">
                 <img class="writingImg" src="/images/{{img.filename}}" />
                 <div class="writingBox">
-                  <div class="writingTitle">제목 : {{contents[i].board_title}}</div>
-                  <div class="writingContent">{{contents[i].board_content}}</div>
+                  <div class="writingTitle">제목 : {{item.board_title}}</div>
+                  <div class="writingContent">{{item.board_content}}</div>
                 </div>
               </div>
-            {% else %}
+            {% endfor %}
+          {% else %}
               <div class="myWriting">
-                <img class="basicImg" src="/images/lion.jpg" />
+                <img class="writingImg" src="/images/lion.jpg" />
                 <div class="writingBox">
-                  <div class="writingTitle">제목 : {{contents[i].board_title}}</div>
-                  <div class="writingContent">{{contents[i].board_content}}</div>
+                  <div class="writingTitle">제목 : {{item.board_title}}</div>
+                  <div class="writingContent">{{item.board_content}}</div>
                 </div>
               </div>
-            {% endif %}
-          {% endfor %}
+          {% endif %}
         {% endfor %}
       {% else %}
         <div>등록한 글이 없습니다.</div>

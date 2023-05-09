@@ -58,6 +58,7 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
     where: {user_no: userNo}
   });
   res.render("profile", { title: "profile", user, contents });
+  console.log(contents);
 });
 
 router.get("/:id/withdraw", isLoggedIn, (req, res, next) => {
