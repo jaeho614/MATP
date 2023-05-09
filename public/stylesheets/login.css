@@ -185,3 +185,11 @@ a {
 #naver {
     background-color: rgb(127, 204, 11);
 }
+
+.selectJoin > button {
+    background-color: white;
+    font-size: 16px;
+    margin: 0 5px;
+}
+
+

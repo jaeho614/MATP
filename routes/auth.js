@@ -37,4 +37,12 @@ router.get("/logout", (req, res, next) => {
     res.redirect("/");
 });
 
+router.get("/searchId", (req, res, next) => {
+    res.render("searchId", {title: "아이디 찾기"});
+});
+
+router.get("/searchPw", (req, res, next) => {
+    res.render("searchPw", {title: "비밀번호 찾기"});
+});
+
 module.exports = router;
