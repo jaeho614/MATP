@@ -20,7 +20,7 @@ router.get("/kakao", passport.authenticate("kakao"));
 
 router.get("/kakao/callback", passport.authenticate("kakao", {
     failureRedirect: "/?loginError=카카오로그인 실패",
-}), (res, req) => {
+}), (req, res) => {
     res.redirect("/");
 });
 

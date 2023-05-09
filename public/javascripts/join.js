@@ -287,7 +287,7 @@ joinBtn.addEventListener("click", async (event) => {
         return await axios
             .post("/auth/join", {
                 id: id, nick: nick, pwd: password, name: name, birthday: birth, phone: phone, email: email, addr: region, gender: gender})
-            .then(() => {
+            .then((res) => {
                 location.href = "/";
             })
             .catch((error) => {
