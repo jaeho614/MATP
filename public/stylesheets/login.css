@@ -169,10 +169,19 @@ a {
     align-items: center;
     text-align: center;
     justify-content: center;
+    box-shadow: 3px 1px 10px 0.5px rgba(0, 0, 0, 0.4);
 }
 
 .selectLogin > a:hover{
     background-color: black;
     color:orange;
     transition: .3s;
+}
+
+#kakao {
+    background-color: rgb(238, 238, 11);
+}
+
+#naver {
+    background-color: rgb(127, 204, 11);
 }
