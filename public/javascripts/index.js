@@ -23,4 +23,3 @@ function makeBtn(container, items) {
 
 makeBtn(navBar, navMenu);
 makeBtn(footBar, footMenu);
-

@@ -22,10 +22,8 @@ exports.withdraw = async (req, res, next) => {
 
     try {
       await users.update({
-            user_id: " ",
             user_pwd: " ",
             user_nm: " ",
-            user_nick: " ",
             user_tel: " ",
             user_gender: 0,
             user_birthday: 0000-00-00,
@@ -35,7 +33,7 @@ exports.withdraw = async (req, res, next) => {
       }, {
         where: {user_id: id}
       });
-      return res.redirect("/");
+      return (res.redirect("/"), req.session.destroy());
     } catch (error) {
       console.error(error);
     }
