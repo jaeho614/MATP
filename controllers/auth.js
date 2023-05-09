@@ -40,7 +40,7 @@ exports.idChk = async (req, res, next) => {
             res.json({ joined: true, message: "이미 사용중인 아이디입니다." });
         } else {
             res.json({ joined: false, message: "사용이 가능한 아이디입니다." });
-        }
+        };
     } catch (error) {
         console.error(error);
     }
@@ -57,7 +57,7 @@ exports.nickChk = async (req, res, next) => {
             res.json({ joined: true, message: "이미 사용중인 닉네임입니다." });
         } else {
             res.json({ joined: false, message: "사용이 가능한 닉네임입니다." });
-        }
+        };
     } catch (error) {
         console.error(error);
     }
@@ -74,7 +74,7 @@ exports.phoneChk = async (req, res, next) => {
             res.json({ joined: true, message: "이미 가입된 전화번호입니다." });
         } else {
             res.json({ joined: false, message: "인증 페이지로 이동" });
-        }
+        };
     } catch (error) {
         console.error(error);
     }
@@ -91,7 +91,7 @@ exports.emailChk = async (req, res, next) => {
             res.json({ joined: true, message: "이미 사용중인 이메일입니다." });
         } else {
             res.json({ joined: false, message: "사용이 가능한 이메일입니다." });
-        }
+        };
     } catch (error) {
         console.error(error);
     }
@@ -102,15 +102,15 @@ exports.login = (req, res, next) => {
         if(authError){
             console.error(authError);
             return next(authError);
-        }
+        };
         if(!user){
             return res.redirect(`/?loginError=${info.message}`);
-        }
+        };
         return req.login(user, (loginError) => {
             if(loginError){
                 console.error(loginError);
                 return next(loginError);
-            }
+            };
             return res.redirect("/");
         });
     })(req, res, next);
