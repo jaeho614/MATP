@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const { users } = require("../models");
+const { resourceLimits } = require("worker_threads");
 
 exports.join = async(req, res, next) => {
     const {id, nick, pwd, name, birthday, phone, email, addr, gender} = req.body;
@@ -97,7 +98,28 @@ exports.emailChk = async (req, res, next) => {
     }
 };
 
-exports.login = (req, res, next) => {
+exports.exUserChk = async (req, res, next) => {
+    const {id, password} = req.body;
+    const exUser = await users.findOne({
+        where: {user_id: id}
+    });
+    try{
+        if(!exUser){
+            return res.json({message: "존재하지 않는 아이디입니다."});
+        } else {
+            const result = await bcrypt.compare(password, exUser.user_pwd);
+            if(!result){
+                return res.json({message: "비밀번호가 틀렸습니다."});
+            };
+        };
+        next();
+    } catch(error) {
+        console.error(error);
+        next(error);
+    }
+};
+
+exports.login = async (req, res, next) => {
     passport.authenticate("local", (authError, user, info) => {
         if(authError){
             console.error(authError);
