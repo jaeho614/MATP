@@ -58,3 +58,15 @@ input{
     width: 160px;
     margin: 10px 0;
 }
+
+.inputBox{
+    width: 250px;
+}
+
+#email{
+    margin-left: 15px;
+}
+
+#name{
+    margin-left: 29px;
+}
