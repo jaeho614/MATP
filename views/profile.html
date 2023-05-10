@@ -44,12 +44,15 @@
             <div id="divAddr">{{user.user_addr}}</div>
             <input id="inputAddr" class="hidden" name="addr" type="text" />
           </div>
-          <button id="modify_af" class="hidden" type="submit">수정완료</button>
-          <button id="modify_bf">수정</button>
+          <div id="btnBox">
+            <button id="modify_af" class="hidden" type="submit">수정완료</button>
+            <button id="modify_bf">수정</button>
+            <button id="changePwBtn">PW 수정</button>
+            <a id="withdrawBtn" href="/profile/{{user.user_id}}/withdraw"
+              >회원탈퇴</a
+            >
+          </div>
         </form>
-        <a id="withdrawBtn" href="/profile/{{user.user_id}}/withdraw"
-          >회원탈퇴</a
-        >
       </div>
     </div>
     <div id="listTitle">

@@ -73,9 +73,9 @@ exports.phoneChk = async (req, res, next) => {
     let code = '';
     let date = new Date();
     let now = Date.now();
-    let expire = date.setMinutes(date.getMinutes() + 1); 
+    let expire = date.setMinutes(date.getMinutes() + 1); //인증코드 만료시간 1분
 
-    for (let i = 0; i < 4; i++) code += Math.floor(Math.random() * 10);
+    for (let i = 0; i < 4; i++) code += Math.floor(Math.random() * 10); //숫자 4자리 랜덤 인증코드 생성
     
     try {
         const exUser = await users.findOne({

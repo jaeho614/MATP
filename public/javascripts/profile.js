@@ -64,3 +64,16 @@ const goToBack = document.querySelector("#goToBack");
 goToBack.addEventListener("click", (event) => {
     history.back();
 })
+
+//비밀번호 변경
+const popupWidth = 400;
+const popupHeight = 400;
+const popupX = (window.screen.width / 2) - (popupWidth / 2);
+const popupY = (window.screen.height / 2) - (popupHeight / 2);
+
+const changePwBtn = document.querySelector("#changePwBtn");
+
+changePwBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.open("changePw", "비밀번호 변경", `status=no, width=${popupWidth}, height=${popupHeight}, left=${popupX}, top=${popupY}`);
+})

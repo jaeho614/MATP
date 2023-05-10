@@ -140,12 +140,22 @@ input {
     font-weight: 500;
 }
 
-#profileTel > button {
+#btnBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+#btnBox > button {
     padding: 5px 10px;
     text-align: center;
     align-items: center;
     background-color: orange;
     font-weight: 600;
+    width: 80px;
+    height: 35px;
     border: none;
     border: 2px solid white; 
     border-radius: 5px;
@@ -154,17 +164,19 @@ input {
     cursor: pointer;
 }
 
-#profileTel > button:hover{
+#btnBox > button:hover{
     background-color: black;
     color: orange;
     font-weight: 600;
     transition: .3s;
 }
 
-#withdrawBtn {
+#changePwBtn {
     position: relative;
-    left: 670px;
-    bottom: 27px;
+    left: 220px;
+}
+
+#btnBox > a {
     text-decoration: none;
     color: black;
     padding: 5px 10px;
@@ -181,14 +193,10 @@ input {
     font-size: 15px;
 }
 
-#withdrawBtn:hover {
+#btnBox > a:hover {
     background-color: black;
     color: orange;
     transition: .3s;
-}
-
-#modify_bf {
-    margin-top: 7px;
 }
 
 #myList {

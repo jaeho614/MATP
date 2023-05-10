@@ -15,9 +15,9 @@
       </button>
     <div id="main">
         {% if id %}
-            가입된 아이디는 {{id}} 입니다.
+            <span>가입된 아이디는 <span style="color:red; font-weight: bold;">{{id}}</span> 입니다.</span>
         {% elif pw %}
-            임시비밀번호는 {{pw}} 입니다.
+            <span>임시비밀번호는 <span style="color:red; font-weight: bold;">{{pw}}</span> 입니다.</span>
         {% endif %}
     </div>
     <script src="/javascripts/searchInform.js"></script>

@@ -49,6 +49,7 @@ router.post("/image/:id", isLoggedIn, upload.single("myPhoto"), async (req, res)
   }
 });
 router.post("/:id/withdraw", isLoggedIn, withdraw);
+// router.post("/:id/changePw", isLoggedIn);
 
 router.get("/:id", isLoggedIn, async (req, res, next) => {
   const user = req.user;
@@ -59,6 +60,13 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
   });
   res.render("profile", { title: "profile", user, contents });
 });
+
+
+
+// router.get("/changePw", isLoggedIn, (req, res, next) => {
+//   const user = req.user;
+//   res.render("changePw", { title: "비밀번호 변경", user });
+// });
 
 router.get("/:id/withdraw", isLoggedIn, (req, res, next) => {
   const user = req.user;
