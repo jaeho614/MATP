@@ -44,17 +44,17 @@ module.exports = function(sequelize, DataTypes) {
       comment: "가게 설명"
     },
     store_wkd_time: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(100),
       allowNull: true,
       comment: "평일 영업시간"
     },
     store_wknd_time: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(100),
       allowNull: true,
       comment: "주말 영업시간"
     },
     store_break_time: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(100),
       allowNull: true,
       comment: "쉬는 시간"
     },

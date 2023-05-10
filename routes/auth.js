@@ -2,7 +2,7 @@ const express = require("express");
 const passport = require("passport");
 
 const {isLoggedIn, isNotLoggedIn} = require("../middlewares");
-const {join, login, logout, idChk, nickChk, emailChk, phoneChk, exUserChk, searchId, searchPw} = require("../controllers/auth");
+const {join, login, logout, idChk, nickChk, emailChk, phoneChk, exUserChk, searchId, searchPw, authChk} = require("../controllers/auth");
 
 const router = express.Router();
 
@@ -10,10 +10,10 @@ router.post("/join", isNotLoggedIn, join);
 router.post("/idChk/join", idChk);
 router.post("/nickChk/join", nickChk);
 router.post("/phoneChk/join", phoneChk);
+router.post("/authChk/join", authChk);
 router.post("/emailChk/join", emailChk);
 
 router.post("/login", isNotLoggedIn, exUserChk, login);
-
 router.post("/logout", isLoggedIn, logout);
 
 router.post("/searchId", searchId);

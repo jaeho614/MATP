@@ -1,5 +1,3 @@
-// https://mniyunsu.github.io/js-regexp/
-
 let idValid = false;
 let nickValid = false;
 let pwdValid = false;
@@ -66,7 +64,7 @@ nickChkBtn.addEventListener("click", async event => {
         return (
             nickChk.innerHTML = `<span id="nickChk" style="color:red">&nbsp;사용 할 수 없는 닉네임입니다.</span>`,
             nickValid = false,
-            alert("잘못된 닉네임 입니다.") //여유 되면 "레이어 팝업"
+            alert("잘못된 닉네임 입니다.")
             ); 
     } else {
         return await axios
@@ -173,16 +171,38 @@ phoneChkBtn.addEventListener("click", async (event) => {
                 if(joined){
                     phoneValid = false;
                     alert(message);
-                } else {
-                    phoneValid = true;
-                    alert(message);
-                    //시간되면 인증받기
                 }
             })
             .catch((error) => {
-                console.log(error);
+                console.error(error);
             });
     }
+})
+
+const authChkBtn = document.querySelector("#authChkBtn");
+const authInput = document.querySelector("#authInput");
+
+authChkBtn.addEventListener("click", async (event) => {
+    event.preventDefault();
+    const authNum = authInput.value;
+
+    return await axios.post("/auth/authChk/join", {
+        authNum: authNum,
+    })
+    .then((request) => {
+        const {joined, message} = request.data;
+        
+        if(joined){
+            phoneValid = false;
+            alert(message);
+        } else {
+            phoneValid = true;
+            alert(message);
+        }
+    })
+    .catch((error) => {
+        console.error(error);
+    })
 })
 
 //이메일
@@ -201,7 +221,7 @@ emailChkBtn.addEventListener("click", async (event) => {
         return (
             emailChk.innerHTML = `<span id="emailChk" style="color:red">&nbsp;사용 할 수 없는 이메일입니다.</span>`,
             emailValid = false,
-            alert("잘못된 이메일 입니다.") //여유 되면 "레이어 팝업"
+            alert("잘못된 이메일 입니다.")
             ); 
     } else {
         return await axios
@@ -233,7 +253,6 @@ function getGender(event){
 const joinBtn = document.querySelector("#join_btn");
 
 joinBtn.addEventListener("click", async (event) => {
-    // let form = new FormData();
     const joinRegion = document.querySelector("#join_region");
     const id = joinId.value;
     const nick = joinNick.value;
@@ -244,42 +263,25 @@ joinBtn.addEventListener("click", async (event) => {
     const email = joinEmail.value;
     const region = joinRegion.value;
 
-    // form.append("id", id);
-    // form.append("nick", nick);
-    // form.append("password", password);
-    // form.append("name", name);
-    // form.append("birth", birth);
-    // form.append("phone", phone);
-    // form.append("email", email);
-    // form.append("region", region);
-    // form.append("gender", gender);
-    // console.log(form);
     if(!idValid){
         alert("ID 중복확인을 해주세요.");
-        // return (event.preventDefault(), alert("ID 중복확인을 해주세요."));
     }
     if(!nickValid){
-        // return (event.preventDefault(), alert("닉네임 중복확인을 해주세요."));
         alert("닉네임 중복확인을 해주세요.");
     }
     if(!pwdValid){
-        // return (event.preventDefault(), alert("비밀번호가 일치하지 않습니다."));
         alert("비밀번호가 일치하지 않습니다.");
     }
     if(!nameValid){
-        // return (event.preventDefault(), alert("이름을 입력해주세요."));
         alert("이름을 입력해주세요.");
     }
     if(!birthValid){
-        // return (event.preventDefault(), alert("생년월일을 입력해주세요"));
         alert("생년월일을 입력해주세요");
     }
     if(!phoneValid){
-        // return (event.preventDefault(), alert("전화번호 인증을 받아야합니다."));
         alert("전화번호 인증을 받아야합니다.");
     }
     if(!emailValid){
-        // return (event.preventDefault(), alert("이메일 중복확인을 해주세요."));
         alert("이메일 중복확인을 해주세요.");
     }
     event.preventDefault();

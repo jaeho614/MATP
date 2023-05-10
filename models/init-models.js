@@ -1,4 +1,5 @@
 var DataTypes = require("sequelize").DataTypes;
+var _auth = require("./auth");
 var _board = require("./board");
 var _board_files = require("./board_files");
 var _comment = require("./comment");
@@ -15,6 +16,7 @@ var _users = require("./users");
 var _wish_list = require("./wish_list");
 
 function initModels(sequelize) {
+  var auth = _auth(sequelize, DataTypes);
   var board = _board(sequelize, DataTypes);
   var board_files = _board_files(sequelize, DataTypes);
   var comment = _comment(sequelize, DataTypes);
@@ -60,6 +62,7 @@ function initModels(sequelize) {
   users.hasMany(wish_list, { as: "wish_lists", foreignKey: "user_no"});
 
   return {
+    auth,
     board,
     board_files,
     comment,
