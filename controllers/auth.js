@@ -100,7 +100,7 @@ exports.phoneChk = async (req, res, next) => {
             .create({
                 body: `MATP 인증문자 입니다. 인증번호를 입력하여 주세요. ${code}`,
                 from: '+12706068123',
-                to: '+821053930614'
+                to: '+821053930614' //받는사람 번호 넣어야하지만 실제로 보내면 안되기 때문에 문자열 넣어둠
             });
             res.json({ joined: true, message: "인증번호가 발급되었습니다. 확인해주세요." });
         };
