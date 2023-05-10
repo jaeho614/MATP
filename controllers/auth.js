@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const { users } = require("../models");
-const { resourceLimits } = require("worker_threads");
 
 exports.join = async(req, res, next) => {
     const {id, nick, pwd, name, birthday, phone, email, addr, gender} = req.body;
@@ -143,3 +142,45 @@ exports.logout = (req, res) => {
         res.redirect("/");
     });
 };
+
+exports.searchId = async (req, res) => {
+    const {email, name} = req.body;
+    try{
+        const exUser = await users.findOne({
+            where: {user_email: email, user_nm: name}
+        });
+    
+        if(exUser){
+            res.json({id: exUser.user_id});
+        } else {
+            res.json({message: "이메일 주소로 가입된 아이디가 없습니다."});
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+exports.searchPw = async (req, res) => {
+    const {email, id} = req.body;
+    try{
+        const exUser = await users.findOne({
+            where: {user_email: email, user_id: id}
+        });
+
+        if(exUser){
+            const randomPw = crypto.randomUUID().substring(0,7);
+            const hash = await bcrypt.hash(randomPw, 12);
+
+            await users.update({
+                user_pwd: hash,
+            }, {
+                where: {user_id: id}
+            })
+            res.json({pw: randomPw});
+        } else {
+            res.json({message: "입력된 정보로 가입된 아이디가 없습니다."});
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}

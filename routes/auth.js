@@ -2,7 +2,7 @@ const express = require("express");
 const passport = require("passport");
 
 const {isLoggedIn, isNotLoggedIn} = require("../middlewares");
-const {join, login, logout, idChk, nickChk, emailChk, phoneChk, exUserChk} = require("../controllers/auth");
+const {join, login, logout, idChk, nickChk, emailChk, phoneChk, exUserChk, searchId, searchPw} = require("../controllers/auth");
 
 const router = express.Router();
 
@@ -15,6 +15,10 @@ router.post("/emailChk/join", emailChk);
 router.post("/login", isNotLoggedIn, exUserChk, login);
 
 router.post("/logout", isLoggedIn, logout);
+
+router.post("/searchId", searchId);
+router.post("/searchPw", searchPw);
+
 
 router.get("/kakao", passport.authenticate("kakao"));
 
@@ -44,5 +48,15 @@ router.get("/searchId", (req, res, next) => {
 router.get("/searchPw", (req, res, next) => {
     res.render("searchPw", {title: "비밀번호 찾기"});
 });
+
+router.get("/searchInform/id/:id", (req, res ,next) => {
+    const {id} = req.params;
+    res.render("searchInform", {title: "내정보 찾기 완료", id});
+})
+
+router.get("/searchInform/password/:pw", (req, res ,next) => {
+    const {pw} = req.params;
+    res.render("searchInform", {title: "내정보 찾기 완료", pw});
+})
 
 module.exports = router;

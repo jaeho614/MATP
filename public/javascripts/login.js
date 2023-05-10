@@ -22,13 +22,19 @@ loginBtn.addEventListener("click", async (event) => {
 const searchId = document.querySelector("#searchId");
 const searchPw = document.querySelector("#searchPw");
 
+const popupWidth = 400;
+const popupHeight = 400;
+const popupX = (window.screen.width / 2) - (popupWidth / 2);
+const popupY = (window.screen.height / 2) - (popupHeight / 2);
+
+
 searchId.addEventListener("click", (event) => {
     event.preventDefault();
-    window.open("searchId", "아이디찾기", "width=400, height=400, left=100, top=50");
+    window.open("searchId", "아이디찾기", `status=no, width=${popupWidth}, height=${popupHeight}, left=${popupX}, top=${popupY}`);
 });
 
 searchPw.addEventListener("click", (event) => {
     event.preventDefault();
-    window.open("searchPw", "비밀번호찾기", "width=400, height=400, left=100, top=50");
+    window.open("searchPw", "비밀번호찾기", `status=no, width=${popupWidth}, height=${popupHeight}, left=${popupX}, top=${popupY}`);
 
 });
