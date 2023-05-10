@@ -1,22 +1,18 @@
 * {
     text-decoration: none;
-    board-style: none;
+    list-style: none;
     margin: 0px;
     padding: 0px;
-
-}
-
-div {
-    /*border: 1px solid black;*/
 }
 
 #a {
+    width: 1300px;
     height: 100%;
     /*display: flex;*/
     flex-direction: column;
     align-items: center;
     padding: 50px;
-
+    margin: 0 auto;
 }
 
 footer {
@@ -27,14 +23,15 @@ footer {
     margin: 0 auto;
     height: 80% auto;
     width: 80% auto;
-    padding: 20px;
 }
 
 #c {
     display: flex;
     flex-direction: column;
     width: 100%;
-    border: 1px solid black;
+}
+#c:hover{
+    background-color: silver;
 }
 
 #c1 {
@@ -42,10 +39,18 @@ footer {
     display: flex;
     justify-content: space-between;
     border: none;
+    /*justify-content: center;*/
+
+}
+
+#cont {
+    margin: 10px;
+    text-overflow: ellipsis;
 }
 
 #c2 {
     display: flex;
+    margin: 10px;
 }
 
 textarea {
@@ -54,8 +59,9 @@ textarea {
     margin: 0 auto;
 }
 
-.img {
-    width: 100px;
+.preview-images{
+    width: 250px;
+    height: 200px;
 }
 
 li {
@@ -66,11 +72,59 @@ li {
 ul {
     display: inline-flex;
 
+}
+
+.title {
+    margin-bottom: 10px;
+    font-weight: 600;
+    line-height: 120%;
+    color: rgb(44, 135, 241);
+}
+.content{
+    font-size: 15px;
+    width: 100%;
+    padding-top: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 25px;
+    max-height: 75px;
+    color: black;
+    font-weight: normal;
 
 }
 
-#img {
-    width: 100px;
-    height: 100px;
+hr {
+    margin-bottom: 20px;
+}
+#button{
+    display: flex;
+    justify-content: right;
+    margin-right: 10px;
+}
+.pagination{
+    text-align: center;
 
+}
+#create {
+    display: inline-block;
+    float: right;
+}
+#create button {
+    background-color: #ff7400;
+    border: white;
+    width: 40px;
+    height: 20px;
+}
+#create button a {
+    color: white;
+}
+.createAt{
+    text-align: right;
+    margin: 10px;
+    color: black;
+    font-size: 15px;
 }

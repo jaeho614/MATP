@@ -61,12 +61,9 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
   res.render("profile", { title: "profile", user, contents });
 });
 
-
-
-// router.get("/changePw", isLoggedIn, (req, res, next) => {
-//   const user = req.user;
-//   res.render("changePw", { title: "비밀번호 변경", user });
-// });
+router.get("/changePw", (req, res, next) => {
+  res.render("changePw", { title: "비밀번호 변경" });
+});
 
 router.get("/:id/withdraw", isLoggedIn, (req, res, next) => {
   const user = req.user;

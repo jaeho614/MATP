@@ -20,33 +20,42 @@ $(document).ready(function () {
 
 
 const form = document.querySelector('form');
-const titleInput = document.querySelector('#title');
-// const storeNameInput = document.querySelector('#store_name');
-// const nickInput = document.querySelector('#nick');
-const contentInput = document.querySelector('#content');
+const rgnInput = document.querySelector('#rgn_no');
+const nameInput = document.querySelector('#store_nm');
+const addrInput = document.querySelector('#store_addr');
+const detailInput = document.querySelector('#store_detail_addr');
+const telInput = document.querySelector('#store_tel');
+const contentInput = document.querySelector('#store_content');
+const wkdInput = document.querySelector('#store_wkd_time');
+const wkndInput = document.querySelector('#store_wknd_time');
+const breakInput = document.querySelector('#store_break_time');
 const fileInput = document.querySelector('#input-multi-files');
-
-const boardNo = window.location.pathname.split('/').pop();
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('board_title', titleInput.value);
-    // formData.append('store_name', storeNameInput.value);
-    // formData.append('nick', nickInput.value);
-    formData.append('board_content', contentInput.value);
+    formData.append('rgn_no', rgnInput.value);
+    formData.append('store_nm', nameInput.value);
+    formData.append('store_addr', addrInput.value);
+    formData.append('store_detail_addr', detailInput.value);
+    formData.append('store_tel', telInput.value);
+    formData.append('store_content', contentInput.value);
+    formData.append('store_wkd_time', wkdInput.value);
+    formData.append('store_wknd_time', wkndInput.value);
+    formData.append('store_break_time', breakInput.value);
     for (const file of fileInput.files) {
         formData.append('files', file);
     }
 
-    await axios.post(`/board/update/${boardNo}`, formData, {
+
+    await axios.post('/search/multiple-upload', formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
     }).then((req, res, next) => {
         console.log("5555555555", req.data.url);
-        location.href=`/board/detail/${boardNo}`;
+        location.href='/list';
     }).catch((error) => {
         console.error(error);
     });

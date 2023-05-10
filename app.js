@@ -20,6 +20,7 @@ const pageRouter = require('./routes/page');
 const boardRouter = require("./routes/board");
 const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
+const searchRouter = require("./routes/search");
 
 // view engine setup
 app.set("port", process.env.PORT);
@@ -45,7 +46,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+app.use("/search", searchRouter);
 app.use('/profile', profileRouter);
 app.use('/board', boardRouter);
 app.use("/auth", authRouter);

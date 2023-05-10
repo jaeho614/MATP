@@ -36,5 +36,4 @@ searchId.addEventListener("click", (event) => {
 searchPw.addEventListener("click", (event) => {
     event.preventDefault();
     window.open("searchPw", "비밀번호찾기", `status=no, width=${popupWidth}, height=${popupHeight}, left=${popupX}, top=${popupY}`);
-
 });

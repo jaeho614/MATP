@@ -9,7 +9,7 @@ const router = express.Router();
 
 // 목록
 router.get('/create', isLoggedIn, (req, res) => {
-    const id = req.user.user_id
+    const id = req.user.user_id;
     res.redirect(`/board/create/${id}`);
 });
 
@@ -27,7 +27,7 @@ router.get('/detail/:board_no', async (req, res) => {
 });
 
 // 게시글 수정
-router.get('/update/:board_no', isLoggedIn, async(req, res) => {
+router.get('/update/:board_no', async(req, res) => {
     const boardNo = req.params.board_no;
     const boards = await board.findOne({
         where: {board_no: boardNo}
@@ -35,39 +35,15 @@ router.get('/update/:board_no', isLoggedIn, async(req, res) => {
     res.render("update", {boards});
 });
 
-router.post('/update/:board_no', async(req, res) => {
-    const boardNo = req.params.board_no;
-    const {board_title, board_content} = req.body;
-
-    try{
-        const boards = await board.update({
-            board_title: board_title,
-            board_content: board_content,
-        },{
-            where: {board_no: boardNo}
-        });
-        if(boards === null){
-            console.log("게시물 수정 에러!");
-            res.status(400).json({"msg":"uploadError"});
-        }else{
-            console.log("게시물 수정!");
-            return res.redirect(`/board/detail/${boardNo}`);
-        };
-    }catch(error){
-        console.error(error);
-        res.status(500).json({"msg":error});
-    };
-});
-
 //게시글 삭제
-router.post('/delete/:board_no', isLoggedIn, async (req, res) => {
+router.post('/delete/:board_no', async (req, res) => {
     const boardNo = req.params.board_no;
-
     await board.destroy({
-        where: { board_no: boardNo }
+        where: { board_no: boardNo}
     });
     res.redirect('/board');
 });
+
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -97,8 +73,36 @@ const upload = multer({
     },
     limits : { fileSize: 5 * 1024 * 1024 },
 });
-
-
+//게시글 수정
+router.post('/update/:board_no', upload.array('files'), async(req, res) => {
+    const boardNo = req.params.board_no;
+    const {board_title, board_content} = req.body;
+    console.log("11111111111", req.body);
+    try {
+        const files = [];
+        for(const file of req.files){
+            files.push({ filename: file.filename, url: `/img/${file.filename}` });
+        };
+        const boards = await board.update({
+            board_title: board_title,
+            board_content: board_content,
+            img: files,
+        },{
+            where: {board_no: boardNo}
+        });
+        if (boards === null) {
+            console.log("게시물 수정 에러!");
+            res.status(400).json({"msg": "uploadError"});
+        } else {
+            console.log("게시물 수정!");
+            res.status(200).json({"msg":"uploadSuccess"});
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({"msg": error});
+    }
+});
+// 이미지 업로드
 router.post("/multiple-upload", upload.array('files'), async(req, res) => {
     const {title, content} = req.body;
 

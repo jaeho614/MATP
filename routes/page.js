@@ -1,6 +1,6 @@
 const express = require("express");
 const {isNotLoggedIn} = require("../middlewares");
-const { renderJoin, renderMain, renderLogin, renderBoard} = require("../controllers/page");
+const { renderJoin, renderMain, renderLogin, renderBoard, renderList, renderstorewrite, renderStore} = require("../controllers/page");
 
 const router = express.Router();
 
@@ -9,10 +9,12 @@ router.use((req, res, next) => {
     next();
 });
 
-
 router.get('/board', renderBoard);
 router.get("/login", isNotLoggedIn, renderLogin);
 router.get("/join", isNotLoggedIn, renderJoin);
 router.get("/", renderMain);
+router.get("/list", renderList);
+router.get('/store/:store_no', renderStore);
+router.get("/list/storewrite", renderstorewrite);
 
 module.exports = router;

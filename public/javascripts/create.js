@@ -1,3 +1,4 @@
+//이미지 미리보기
 $(document).ready(function () {
     let imagesPreview = function (input, placeToInsertImagePreview) {
         if (input.files) {
@@ -28,7 +29,6 @@ const fileInput = document.querySelector('#input-multi-files');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append('title', titleInput.value);
     // formData.append('store_name', storeNameInput.value);
@@ -37,7 +37,6 @@ form.addEventListener('submit', async (e) => {
     for (const file of fileInput.files) {
         formData.append('files', file);
     }
-
 
     await axios.post('/board/multiple-upload', formData, {
         headers: {

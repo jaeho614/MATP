@@ -67,6 +67,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TINYINT,
       allowNull: false,
       comment: "삭제 여부"
+    },
+    img: {
+      type: DataTypes.JSON,
+      allowNull: true
     }
   }, {
     sequelize,

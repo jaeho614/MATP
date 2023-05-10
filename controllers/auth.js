@@ -73,9 +73,9 @@ exports.phoneChk = async (req, res, next) => {
     let code = '';
     let date = new Date();
     let now = Date.now();
-    let expire = date.setMinutes(date.getMinutes() + 1); //인증코드 만료시간 1분
+    let expire = date.setMinutes(date.getMinutes() + 1);
 
-    for (let i = 0; i < 4; i++) code += Math.floor(Math.random() * 10); //숫자 4자리 랜덤 인증코드 생성
+    for (let i = 0; i < 4; i++) code += Math.floor(Math.random() * 10);
     
     try {
         const exUser = await users.findOne({
@@ -100,7 +100,7 @@ exports.phoneChk = async (req, res, next) => {
             .create({
                 body: `MATP 인증문자 입니다. 인증번호를 입력하여 주세요. ${code}`,
                 from: '+12706068123',
-                to: '+821053930614' //받는사람 번호 넣어야하지만 실제로 보내면 안되기 때문에 문자열 넣어둠
+                to: '+821053930614' 
             });
             res.json({ joined: true, message: "인증번호가 발급되었습니다. 확인해주세요." });
         };
@@ -118,7 +118,9 @@ exports.authChk = async (req, res, next) => {
         });
         const expired = exAuth.expire;
         let now = Date.now();
-
+        if(authNum !== exAuth.auth){
+            res.json({joined: true, message: "인증번호를 다시 확인해주세요."});
+        }
         if(exAuth && expired < now){
             res.json({joined: true, message: "인증번호가 만료되었습니다."});
         }
