@@ -13,8 +13,15 @@ exports.renderLogin = (req, res) => {
     res.render("login", {title: "login"});
 };
 
-exports.renderMain = (req, res, next) => {
-    res.render("index", {title: "MATP"});
+exports.renderMain = async (req, res, next) => {
+    const PAGE_SIZE = 10;
+    const store = await stores.findAll({
+        limit: PAGE_SIZE,
+    });
+    res.render("index", {
+        title: "MATP",
+        store,
+    });
 };
 exports.renderstorewrite = (req, res) => {
     res.render("storewrite", {title: "등록"});

@@ -13,16 +13,23 @@
     <div id="main">
       <span>전국 맛집 랭킹</span>
       <div id="mainRank">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        {% for i in range(0, store.length) %}
+        <div class="content">
+            <a href="/store/{{store[i].store_no}}" class="rank">
+                {% if store[i].img.length > 0 %}
+                <div id="img"><img class="preview-images" width=100 src="{{ store[i].img[0].url }}" accept="image/*">
+                </div>
+                {% else %}
+                <div id="img"><img class="preview-images" width=100 src="/images/lion.jpg" accept="image/*">
+                </div>
+                {% endif %}
+                <div class="a">
+                    <h2>{{store[i].store_nm}}</h2>
+                    <p>{{store[i].store_addr}}</p><br>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
       </div>
     </div>
     {% include "footer.html" %}
