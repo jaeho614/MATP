@@ -43,7 +43,6 @@ form.addEventListener('submit', async (e) => {
             'Content-Type': 'multipart/form-data',
         },
     }).then((req, res, next) => {
-        console.log("5555555555", req.data.url);
         location.href='/board';
     }).catch((error) => {
         console.error(error);

@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const { users, auth } = require("../models");
+const axios = require('axios');
 
 exports.join = async(req, res, next) => {
     const {id, nick, pwd, name, birthday, phone, email, addr, gender} = req.body;
@@ -76,7 +77,7 @@ exports.phoneChk = async (req, res, next) => {
     let expire = date.setMinutes(date.getMinutes() + 1);
 
     for (let i = 0; i < 4; i++) code += Math.floor(Math.random() * 10);
-    //이미 인증완료된 사람은 인증 더 못받게 칼럼추가해서 구현
+
     try {
         const exUser = await users.findOne({
             where: { user_tel: phone },
@@ -226,11 +227,37 @@ exports.login = async (req, res, next) => {
     })(req, res, next);
 };
 
-exports.logout = (req, res) => {
+exports.logout = async (req, res) => {  
     req.logout(() => {
         res.redirect("/");
     });
 };
+
+
+const session = require("express-session");
+
+exports.kakaoLogout = async (req, res) => {
+
+    console.log("kakaoLogout----->",  res.locals.session);
+    try {
+        const ACCESS_TOKEN = req.session.accessToken;
+        let logout = await axios({
+          method:'post',
+          url:'https://kapi.kakao.com/v1/user/unlink',
+          headers:{
+            'Authorization': `Bearer ${ACCESS_TOKEN}`
+          }
+        });
+      } catch (error) {
+        console.error(error);
+        res.json(error);
+      }
+      // 세션 정리
+      req.logout();
+      req.session.destroy();
+      
+      res.redirect('/');
+}
 
 exports.searchId = async (req, res) => {
     const {email, name} = req.body;

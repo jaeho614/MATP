@@ -4,17 +4,23 @@ const KakaoStrategy = require("passport-kakao").Strategy;
 
 const {users} = require("../models");
 
-module.exports = () => {
+module.exports = (req) => {
     passport.use(new KakaoStrategy({
         clientID: process.env.KAKAO_ID,
         callbackURL: "/auth/kakao/callback",
-    }, async (accessToken, refreshToken, profile, done) => {
-        console.log("kakao profile", profile);
+        passReqToCallback: true, // req 객체 전달을 활성화
+    }, async (req, accessToken, refreshToken, profile, done) => {
+        req.session.accessToken = accessToken;
+
         try{
             const exUser = await users.findOne({
                 where: { snsId: profile.id, provider: "kakao"},
             });
             if(exUser){
+                console.log("kakao profile", req.session.accessToken);
+
+                exUser.dataValues.accessToken = accessToken;
+
                 done(null, exUser);
             } else {
                 const newUser = await users.create({

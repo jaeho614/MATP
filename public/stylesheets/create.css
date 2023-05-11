@@ -2,6 +2,9 @@
     max-width: 800px;
     margin: 0 auto;
 }
+form{
+    margin-top: 30px;
+}
 input[type="text"] {
     display: block;
     margin-bottom: 10px;
@@ -9,7 +12,7 @@ input[type="text"] {
 
 input[type="file"] {
     display: block;
-    width: 30%;
+    width: 45%;
     margin-bottom: 10px;
 }
 
@@ -38,8 +41,12 @@ input[type="file"] {
 }
 button{
     float: right;
+    margin-bottom: 30px;
 
 }
 textarea{
     display: block;
+}
+#content{
+    height: 500px;
 }

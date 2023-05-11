@@ -4,45 +4,29 @@ const path = require('path');
 const fs = require('fs');
 const {board} = require('../models');
 const {isLoggedIn} = require("../middlewares");
+const {renderCreate, renderDetail, renderUpdate, renderDelete} = require("../controllers/board")
 
 const router = express.Router();
 
+router.use((req, res, next) => {
+    res.locals.user = req.user;
+    next();
+});
 // 목록
 router.get('/create', isLoggedIn, (req, res) => {
-    const id = req.user.user_id;
-    res.redirect(`/board/create/${id}`);
-});
-
+    res.render('create');
+})
 router.get('/create/:id', isLoggedIn, (req, res) => {
     res.render('create');
 });
-
 //상세페이지
-router.get('/detail/:board_no', async (req, res) => {
-    const board_no = req.params.board_no;
-    const boards = await board.findOne({
-        where: {board_no}
-    })
-     res.render("detail",{boards});
-});
+router.get('/detail/:board_no', renderDetail);
 
 // 게시글 수정
-router.get('/update/:board_no', async(req, res) => {
-    const boardNo = req.params.board_no;
-    const boards = await board.findOne({
-        where: {board_no: boardNo}
-    })
-    res.render("update", {boards});
-});
+router.get('/update/:board_no',isLoggedIn, renderUpdate);
 
 //게시글 삭제
-router.post('/delete/:board_no', async (req, res) => {
-    const boardNo = req.params.board_no;
-    await board.destroy({
-        where: { board_no: boardNo}
-    });
-    res.redirect('/board');
-});
+router.post('/delete/:board_no', renderDelete);
 
 
 const upload = multer({

@@ -264,7 +264,18 @@ input {
 
 .writingContent {
     padding-left: 15px;
+    /*padding: 20px;*/
     background-color: aliceblue;
     height: 120px;
+    border-radius: 20px;
+    overflow-y: scroll;
+}
+
+.writingContent::-webkit-scrollbar{
+    width: 10px;
+}
+
+.writingContent::-webkit-scrollbar-thumb{
+    height: 30%;
     border-radius: 20px;
 }

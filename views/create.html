@@ -6,8 +6,12 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/stylesheets/create.css">
+    <link rel="stylesheet" href="/stylesheets/index.css"/>
 
 <body>
+{% include "header.html" %}
+{% include "navbar.html" %}
+<div id="main">
 <div id="board">
     <form method="post" enctype="multipart/form-data">
         제목 <input type="text" name="board_title" id="title">
@@ -24,6 +28,8 @@
         <button type="submit" class="btn btn-primary">등록</button>
     </form>
 </div>
+</div>
+{% include "footer.html" %}
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/javascripts/create.js"></script>

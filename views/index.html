@@ -17,10 +17,10 @@
         <div class="content">
             <a href="/store/{{store[i].store_no}}" class="rank">
                 {% if store[i].img.length > 0 %}
-                <div id="img"><img class="preview-images" width=100 src="{{ store[i].img[0].url }}" accept="image/*">
+                <div class="mainImg"><img class="preview-image" width=100 src="{{ store[i].img[0].url }}" accept="image/*">
                 </div>
                 {% else %}
-                <div id="img"><img class="preview-images" width=100 src="/images/basic.jpg" accept="image/*">
+                <div class="mainImg"><img class="preview-image" width=100 src="/images/basic.jpg" accept="image/*">
                 </div>
                 {% endif %}
                 <div class="a">
@@ -34,5 +34,6 @@
       </div>
     </div>
     {% include "footer.html" %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </body>
 </html>

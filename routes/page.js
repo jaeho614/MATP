@@ -1,6 +1,6 @@
 const express = require("express");
 const {isNotLoggedIn} = require("../middlewares");
-const { renderJoin, renderMain, renderLogin, renderBoard, renderList, renderstorewrite, renderStore} = require("../controllers/page");
+const { renderJoin, renderMain, renderLogin, renderBoard, renderList, renderstorewrite, renderStore, renderReady} = require("../controllers/page");
 
 const router = express.Router();
 
@@ -9,6 +9,7 @@ router.use((req, res, next) => {
     next();
 });
 
+router.get("/ready", renderReady);
 router.get('/board', renderBoard);
 router.get("/login", isNotLoggedIn, renderLogin);
 router.get("/join", isNotLoggedIn, renderJoin);

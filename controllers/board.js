@@ -1,33 +1,30 @@
 const { board } = require('../models');
-//페이지네이션 및 게시판 목록 구현
-exports.renderBoard = async (req, res, next) => {
-    try {
-        const PAGE_SIZE = 5;
-        const page = req.query.page ? parseInt(req.query.page, 10) : 1;
-        const offset = (page - 1) * PAGE_SIZE;
-        const total = await board.count();
-        const totalPages = Math.ceil(total / PAGE_SIZE);
 
-        const boards = await board.findAll({
-            nest: true,
-            raw : true,
-            order: [
-                ["board_no", "DESC"],
+exports.renderCreate = (req, res) => {
+    const id = req.user.user_id;
+    res.redirect(`/board/create/${id}`);
+}
 
-            ],
-            offset,
-            limit: PAGE_SIZE,
-        });
+exports.renderDetail = async (req, res) => {
+    const board_no = req.params.board_no;
+    const boards = await board.findOne({
+        where: {board_no}
+    })
+    res.render("detail",{boards});
+}
 
-        return res.render("board", {
-            boards,
-            // imgObject,
-            title: "커뮤니티",
-            totalPages,
-            currentPage: page,
-        });
-    } catch (err) {
-        console.error(err);
-        next(err);
-    }
-};
+exports.renderUpdate = async(req, res) => {
+    const boardNo = req.params.board_no;
+    const boards = await board.findOne({
+        where: {board_no: boardNo}
+    })
+    res.render("update", {boards});
+}
+
+exports.renderDelete = async (req, res) => {
+    const boardNo = req.params.board_no;
+    await board.destroy({
+        where: { board_no: boardNo}
+    });
+    res.redirect('/board');
+}

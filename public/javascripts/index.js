@@ -1,25 +1,25 @@
-// const navBar = document.querySelector(".navBar");
-// const footBar = document.querySelector(".footer");
+// const kakaoLogout = document.querySelector("#kakaoLogout");
 
-// const navMenu = [
-//   { name: "검색", id: "search" },
-//   { name: "이색랭킹", id: "ranking" },
-//   { name: "맛집추천", id: "board" },
-//   { name: "즐겨찾기", id: "favorites" },
-// ];
-// const footMenu = [
-//   { name: "공지사항", id: "announcement" },
-//   { name: "이용약관", id: "termsOfUse" },
-//   { name: "MATP정책", id: "policy" },
-//   { name: "고객센터", id: "serviceCenter" },
-// ];
+// kakaoLogout.addEventListener("click", async (event) => {
+//     const { accessToken } = req.body; // 로그아웃 요청에 필요한 액세스 토큰을 요청 바디에서 받아옵니다.
 
-// function makeBtn(container, items) {
-//   items.map(item => {
-//     const containerName = container.className;
-//     container.innerHTML += `<a href=${item.id} id=${item.id} class=${containerName}Btns>` + item.name + "</a>";
-//   });
-// }
+//     try {
+//         const response = await axios.post(
+//         'https://kapi.kakao.com/v1/user/logout',
+//         {},
+//         {
+//             headers: {
+//             Authorization: `Bearer ${accessToken}`,
+//             },
+//         }
+//         );
 
-// makeBtn(navBar, navMenu);
-// makeBtn(footBar, footMenu);
+//         // 로그아웃 성공
+//         console.log(response.data); // 응답 데이터 확인
+//         res.status(200).send('로그아웃되었습니다.');
+//     } catch (error) {
+//         // 로그아웃 실패
+//         console.error(error);
+//         res.status(500).send('로그아웃에 실패했습니다.');
+//     }
+// })

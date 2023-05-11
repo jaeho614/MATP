@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <title>상세정보</title>
     <link rel="stylesheet" href="/stylesheets/detail.css">
+    <link rel="stylesheet" href="/stylesheets/index.css" />
 </head>
 <body>
+{% include "header.html" %}
+{% include "navbar.html" %}
+<div id="main">
 <div id="c">
   <div id="c1">
     <h1 class="title">{{boards.board_title}}</h1>
@@ -22,6 +26,7 @@
     <div id="button"><button><a href="/board">돌아가기</a></button></div>
 
 </div>
-
+</div>
+{% include "footer.html" %}
 </body>
 </html>

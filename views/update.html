@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>수정</title>
+    <link rel="stylesheet" href="/stylesheets/index.css"/>
     <link rel="stylesheet" href="/stylesheets/update.css">
 </head>
 <body>
+{% include "header.html" %}
+{% include "navbar.html" %}
+<div id="main">
 <div class="board">
-
     <form action="/board/update/{{boards.board_no}}" method="post" enctype="multipart/form-data">
         제목:<input type="text" name="board_title" value="{{boards.board_title}}" id="title">
         <div class="form-group">
@@ -24,6 +27,8 @@
         <button type="submit" class="btn btn-primary">수정</button>
     </form>
 </div>
+</div>
+{% include "footer.html" %}
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/javascripts/update.js"></script>

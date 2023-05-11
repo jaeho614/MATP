@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/stylesheets/store.css">
+    <link rel="stylesheet" href="/stylesheets/index.css" />
 </head>
 <body>
-<div>
+{% include "header.html" %}
+{% include "navbar.html" %}
+<div id="main">
     <div id="img">
         {% for img in store.img %}
         <img class="preview-images" width=100 src="{{ img.url }}" accept="image/*">
@@ -49,7 +52,6 @@
         </table>
     </div>
 </div>
-
-<script src="/javascripts/store.js"></script>
+{% include "footer.html" %}
 </body>
 </html>

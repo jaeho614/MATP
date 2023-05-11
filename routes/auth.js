@@ -2,9 +2,18 @@ const express = require("express");
 const passport = require("passport");
 
 const {isLoggedIn, isNotLoggedIn} = require("../middlewares");
-const {join, login, logout, idChk, nickChk, emailChk, phoneChk, exUserChk, searchId, searchPw, authChk} = require("../controllers/auth");
+const {join, login, logout, idChk, nickChk, emailChk, phoneChk, exUserChk, searchId, searchPw, authChk, kakaoLogout} = require("../controllers/auth");
 
 const router = express.Router();
+
+
+router.use((req, res, next) => {
+    // console.log("11111111111111111->", req.user);
+    res.locals.user = req.user;
+    // res.locals.session= req.session.accessToken;
+    next();
+});
+
 
 router.post("/join", isNotLoggedIn, join);
 router.post("/idChk/join", idChk);
@@ -36,10 +45,12 @@ router.get('/login', isNotLoggedIn, (req, res, next) => {
     res.render('login', { title: 'login' });
 });
 
-router.get("/logout", (req, res, next) => {
+router.get("/logout", async (req, res, next) => {
     req.session.destroy();
     res.redirect("/");
 });
+
+router.get("/kakaoLogout",kakaoLogout);
 
 router.get("/searchId", (req, res, next) => {
     res.render("searchId", {title: "아이디 찾기"});

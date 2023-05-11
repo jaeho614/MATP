@@ -5,10 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/search.css"/>
+    <link rel="stylesheet" href="/stylesheets/index.css">
     <title>search</title>
 </head>
 <body>
-<form action="/search/" method="get" class="header">
+{% include "header.html" %}
+{% include "navbar.html" %}
+<div id="main">
+<form action="/search/" method="get" class="searchHeader">
     <div class="search-form">
         <input type="text" name="query" class="search-input" placeholder="검색어를 입력하시오.">
         <button class="search-button">검색</button>
@@ -35,10 +39,19 @@
     <a href="/store/{{store[i].store_no}}">
         <div class="content">
             {% if store[i].img.length > 0 %}
-            <div id="img"><img class="preview-images" width=100 src="{{ store[i].img[0].url }}" accept="image/*"></div>
+            <div class="searchImg"><img class="preview-images" width=100 src="{{ store[i].img[0].url }}" accept="image/*"></div>
+            {% else %}
+            <div class="searchImg"><img class="preview-images" width=100 src="/images/basic.jpg" accept="image/*">
+            </div>
             {% endif %}
             <div class="a">
-                <h2>{{store[i].store_nm}}</h2> <br>{{store[i].store_addr}}<br>
+                <h2>{{store[i].store_nm}}</h2>
+                <p>{{store[i].store_addr}}<p>
+                <div>
+                    <p>{{store[i].store_content}}</p>
+                    <p>평일:{{store[i}.store_wkd_time}}</p>
+                    <p>주말:{{store[i}.store_wknd_time}}</p>
+                </div>
             </div>
 <!--            <div>-->
 <!--                <button class="favorite">즐겨찾기</button>-->
@@ -72,9 +85,10 @@
         {% endif %}
     </ul>
 </nav>
-
 <div>
-    <button><a href="/list/storewrite">등록</a></button>
+    <button id="searchButton"><a href="/list/storewrite">등록</a></button>
 </div>
+</div>
+{% include "footer.html" %}
 </body>
 </html>

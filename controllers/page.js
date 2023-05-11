@@ -23,6 +23,11 @@ exports.renderMain = async (req, res, next) => {
         store,
     });
 };
+
+exports.renderReady = async (req, res) => {
+    res.render("ready", {title: "ready"})
+};
+
 exports.renderstorewrite = (req, res) => {
     res.render("storewrite", {title: "등록"});
 }
