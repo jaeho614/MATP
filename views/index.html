@@ -20,12 +20,13 @@
                 <div id="img"><img class="preview-images" width=100 src="{{ store[i].img[0].url }}" accept="image/*">
                 </div>
                 {% else %}
-                <div id="img"><img class="preview-images" width=100 src="/images/lion.jpg" accept="image/*">
+                <div id="img"><img class="preview-images" width=100 src="/images/basic.jpg" accept="image/*">
                 </div>
                 {% endif %}
                 <div class="a">
                     <h2>{{store[i].store_nm}}</h2>
-                    <p>{{store[i].store_addr}}</p><br>
+                    <p>{{store[i].store_addr}}</p>
+                    <p>{{store[i].store_content}}</p>
                 </div>
             </a>
         </div>

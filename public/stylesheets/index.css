@@ -18,8 +18,9 @@ body {
     background-color: white;
 }
   
-#mainTitle {
-  cursor: pointer;
+.header > a {
+  text-decoration: none;
+  color: black;
   font-size: 70px;
   font-weight: 600;
 }
@@ -147,16 +148,18 @@ body {
 
 .rank{
   display: flex;
+  flex-direction: column;
   text-decoration: none;
   color: orange;
 }
 img{
-  width: 230px;
-  height: 300px;
-  border-radius: 20px 0 0 20px;
+  width: 360px;
+  height: 150px;
+  border-radius: 20px 20px 0 0;
+  border-bottom: 1px solid orange;
 }
 .a{
-  padding: 10px;
+  padding: 0 10px;
   color: #ff7400;
 }
 
