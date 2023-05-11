@@ -82,18 +82,34 @@ body {
   align-items: center;
   justify-content: center;
   padding: 30px;
-  background-color: aqua;
 }
 
 #main > span {
+  font-size: 30px;
+  font-weight: 600;
   margin-bottom: 20px;
 }
 
 #mainRank {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   border-radius: 20px;
   background-color: orange;
-  height: 1000px;
+  /* height: 1000px; */
   width: 800px;
+  box-shadow: 3px 3px 10px 0.5px rgba(0, 0, 0, 0.4);
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+#mainRank > div {
+  border-radius: 20px;
+  margin: 20px;
+  width: 45%;
+  height: 300px;
+  background-color: white;
+  cursor: pointer;
   box-shadow: 3px 3px 10px 0.5px rgba(0, 0, 0, 0.4);
 }
 
