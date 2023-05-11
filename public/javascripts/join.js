@@ -223,6 +223,7 @@ authChkBtn.addEventListener("click", async (event) => {
             phoneValid = false;
             alert(message);
         } else {
+            phoneValid = true;
             stop = true;
             timer.innerText = "";
             alert(message);
@@ -292,25 +293,25 @@ joinBtn.addEventListener("click", async (event) => {
     const region = joinRegion.value;
 
     if(!idValid){
-        alert("ID 중복확인을 해주세요.");
+        return alert("ID 중복확인을 해주세요.");
     }
     if(!nickValid){
-        alert("닉네임 중복확인을 해주세요.");
+        return alert("닉네임 중복확인을 해주세요.");
     }
     if(!pwdValid){
-        alert("비밀번호가 일치하지 않습니다.");
+        return alert("비밀번호가 일치하지 않습니다.");
     }
     if(!nameValid){
-        alert("이름을 입력해주세요.");
+        return alert("이름을 입력해주세요.");
     }
     if(!birthValid){
-        alert("생년월일을 입력해주세요");
+        return alert("생년월일을 입력해주세요");
     }
     if(!phoneValid){
-        alert("전화번호 인증을 받아야합니다.");
+        return alert("전화번호 인증을 받아야합니다.");
     }
     if(!emailValid){
-        alert("이메일 중복확인을 해주세요.");
+        return alert("이메일 중복확인을 해주세요.");
     }
     event.preventDefault();
     if(idValid && nickValid && pwdValid && nameValid && birthValid && phoneValid && emailValid){
