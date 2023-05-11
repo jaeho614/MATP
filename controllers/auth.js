@@ -76,7 +76,7 @@ exports.phoneChk = async (req, res, next) => {
     let expire = date.setMinutes(date.getMinutes() + 1);
 
     for (let i = 0; i < 4; i++) code += Math.floor(Math.random() * 10);
-    
+    //이미 인증완료된 사람은 인증 더 못받게 칼럼추가해서 구현
     try {
         const exUser = await users.findOne({
             where: { user_tel: phone },
@@ -89,6 +89,23 @@ exports.phoneChk = async (req, res, next) => {
             res.json({ joined: true, message: "이미 가입된 전화번호입니다." });
         } else if (expired && expired.expire > now) {
             res.json({ joined: true, message: "이미 발급받은 번호가 있습니다." });
+        } else if (expired && expired.expire < now) {
+            await auth.update({
+                expire: expire, auth: code}, {where: {tel_number: phone}}
+            )
+
+            await client.messages
+            .create({
+                body: `MATP 인증문자 입니다. 인증번호를 입력하여 주세요. ${code}`,
+                from: '+12706068123',
+                to: '+821053930614'
+            }, function (err, message) {
+                if (err) {
+                    res.json({ joined: true, message: "서버에러, 인증 요청 실패." });
+                } else{
+                    res.json({ joined: true, message: "인증번호가 재발급되었습니다. 확인해주세요." });
+                }
+            });
         } else if (!expired) {
             await auth.create({
                 tel_number: phone,
@@ -100,9 +117,14 @@ exports.phoneChk = async (req, res, next) => {
             .create({
                 body: `MATP 인증문자 입니다. 인증번호를 입력하여 주세요. ${code}`,
                 from: '+12706068123',
-                to: '+821053930614' 
+                to: '+821053930614'
+            }, function (err, message) {
+                if (err) {
+                    res.json({ joined: true, message: "서버에러, 인증 요청 실패." });
+                } else{
+                    res.json({ joined: true, message: "인증번호가 발급되었습니다. 확인해주세요." });
+                }
             });
-            res.json({ joined: true, message: "인증번호가 발급되었습니다. 확인해주세요." });
         };
     } catch (error) {
         console.error(error);
@@ -111,6 +133,7 @@ exports.phoneChk = async (req, res, next) => {
 
 exports.authChk = async (req, res, next) => {
     const {authNum} = req.body;
+    let aleadyAuth = false;
 
     try{
         const exAuth = await auth.findOne({
@@ -118,6 +141,10 @@ exports.authChk = async (req, res, next) => {
         });
         const expired = exAuth.expire;
         let now = Date.now();
+
+        if(aleadyAuth){
+            res.json({joined: true, message: "이미 인증이 완료되었습니다."});
+        }
         if(authNum !== exAuth.auth){
             res.json({joined: true, message: "인증번호를 다시 확인해주세요."});
         }
@@ -125,6 +152,7 @@ exports.authChk = async (req, res, next) => {
             res.json({joined: true, message: "인증번호가 만료되었습니다."});
         }
         if(authNum === exAuth.auth){   
+            aleadyAuth = true;
             res.json({ joined: false, message: "인증이 완료되었습니다." });
         }
     } catch (error) {
