@@ -87,6 +87,8 @@ exports.phoneChk = async (req, res, next) => {
 
         if (exUser) {
             res.json({ joined: true, message: "이미 가입된 전화번호입니다." });
+        } else if (expired && expired.ok) {
+            res.json({ joined: false, message: "이미 인증이 완료되었습니다.", already: "false" });
         } else if (expired && expired.expire > now) {
             res.json({ joined: true, message: "이미 발급받은 번호가 있습니다." });
         } else if (expired && expired.expire < now) {
@@ -103,7 +105,7 @@ exports.phoneChk = async (req, res, next) => {
                 if (err) {
                     res.json({ joined: true, message: "서버에러, 인증 요청 실패." });
                 } else{
-                    res.json({ joined: true, message: "인증번호가 재발급되었습니다. 확인해주세요." });
+                    res.json({ joined: true, message: "인증번호가 발급되었습니다. 확인해주세요.", already: "true" });
                 }
             });
         } else if (!expired) {
@@ -122,7 +124,7 @@ exports.phoneChk = async (req, res, next) => {
                 if (err) {
                     res.json({ joined: true, message: "서버에러, 인증 요청 실패." });
                 } else{
-                    res.json({ joined: true, message: "인증번호가 발급되었습니다. 확인해주세요." });
+                    res.json({ joined: true, message: "인증번호가 발급되었습니다. 확인해주세요.", already: "true" });
                 }
             });
         };
@@ -132,28 +134,35 @@ exports.phoneChk = async (req, res, next) => {
 };
 
 exports.authChk = async (req, res, next) => {
-    const {authNum} = req.body;
-    let aleadyAuth = false;
+    const {authNum, phone} = req.body;
 
     try{
         const exAuth = await auth.findOne({
-            where: {auth: authNum},
+            where: {tel_number: phone},
         });
-        const expired = exAuth.expire;
-        let now = Date.now();
 
-        if(aleadyAuth){
-            res.json({joined: true, message: "이미 인증이 완료되었습니다."});
+        let expired;
+        let now = Date.now();
+        
+        if(exAuth){
+            expired = exAuth.expire;
+        }
+
+        if(exAuth === null){
+            return res.json({joined: true, message: "인증번호 받기 버튼을 눌러주세요."});
+        }
+        if(exAuth.ok){
+            return res.json({joined: true, message: "이미 인증이 완료되었습니다."});
         }
         if(authNum !== exAuth.auth){
-            res.json({joined: true, message: "인증번호를 다시 확인해주세요."});
+            return res.json({joined: true, message: "인증번호를 다시 확인해주세요."});
         }
         if(exAuth && expired < now){
-            res.json({joined: true, message: "인증번호가 만료되었습니다."});
+            return res.json({joined: true, message: "인증번호가 만료되었습니다."});
         }
-        if(authNum === exAuth.auth){   
-            aleadyAuth = true;
-            res.json({ joined: false, message: "인증이 완료되었습니다." });
+        if(authNum === exAuth.auth){
+            await auth.update({ok: true}, {where: {auth: authNum}})
+            return res.json({ joined: false, message: "인증이 완료되었습니다." });
         }
     } catch (error) {
         console.error(error);

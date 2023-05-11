@@ -81,7 +81,6 @@ button:hover{
     outline-offset: 2px;
 }
 
-
 input:focus{
     outline: 2px solid orange;
     outline-offset: 2px;
@@ -95,6 +94,11 @@ input:focus{
 
 .essential{
     color: rgb(180, 11, 11);
+}
+
+#timer{
+    font-size: 12px;
+    color: black;
 }
 
 .informChk{

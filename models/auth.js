@@ -22,6 +22,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(100),
       allowNull: true,
       comment: "만료시간"
+    },
+    ok: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      comment: "인증완료"
     }
   }, {
     sequelize,

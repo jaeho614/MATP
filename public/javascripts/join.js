@@ -22,7 +22,7 @@ idChkBtn.addEventListener("click", async event => {
         return (
             idChk.innerHTML = `<span id="idChk" style="color:red">&nbsp;사용 할 수 없는 아이디입니다.</span>`,
             idValid = false,
-            alert("잘못된 ID 입니다.") //여유 되면 "레이어 팝업"
+            alert("잘못된 ID 입니다.")
             ); 
     } else {
         return await axios
@@ -151,6 +151,11 @@ joinBirth.addEventListener("blur", (event) => {
 const joinPhone = document.querySelector("#join_phone");
 const phoneChkBtn = document.querySelector("#phoneChkBtn");
 
+const timer = document.querySelector("#timer");
+
+let cnt = 0;
+let stop = false;
+
 phoneChkBtn.addEventListener("click", async (event) => {
     event.preventDefault();
     const phone = joinPhone.value;
@@ -158,7 +163,21 @@ phoneChkBtn.addEventListener("click", async (event) => {
     const valid = (phone) => {
         return /^\d{3}-\d{4}-\d{4}$/.test(phone);
     };
-    // 010-####-#### 시간되면 만들기
+    
+    function setTime(){
+        if( !stop && 0 <= cnt && cnt < 60 ){
+            let limit = 60 - cnt;
+            timer.innerText =`인증번호 유효시간 ${limit}`;
+            cnt += 1;
+        } else if ( cnt === 60 || stop ){
+            stop = true;
+            timer.innerText = "";
+            cnt = 0;
+            clearInterval(setInterval(setTime, 1000));
+        }
+    }
+    
+    // 010-####-#### 만들기
     if(!valid(num)){
         phoneValid = false;
         alert("사용 할 수 없는 전화번호입니다.");
@@ -167,10 +186,17 @@ phoneChkBtn.addEventListener("click", async (event) => {
                 phone: phone,
             })
             .then((request) => {
-                const { joined, message } = request.data;
+                const { joined, message, already } = request.data;
+
                 if(joined){
                     phoneValid = false;
                     alert(message);
+                } else {
+                    alert(message);
+                }
+
+                if(already === "true"){
+                    setInterval(setTime, 1000);
                 }
             })
             .catch((error) => {
@@ -184,10 +210,11 @@ const authInput = document.querySelector("#authInput");
 
 authChkBtn.addEventListener("click", async (event) => {
     event.preventDefault();
+    const phone = joinPhone.value;
     const authNum = authInput.value;
 
     return await axios.post("/auth/authChk/join", {
-        authNum: authNum,
+        authNum: authNum, phone: phone
     })
     .then((request) => {
         const {joined, message} = request.data;
@@ -196,7 +223,8 @@ authChkBtn.addEventListener("click", async (event) => {
             phoneValid = false;
             alert(message);
         } else {
-            phoneValid = true;
+            stop = true;
+            timer.innerText = "";
             alert(message);
         }
     })
