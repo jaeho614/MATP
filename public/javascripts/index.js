@@ -23,34 +23,3 @@
 
 // makeBtn(navBar, navMenu);
 // makeBtn(footBar, footMenu);
-
-const mainTitle = document.querySelector("#mainTitle");
-const mainLogInBtn = document.querySelector("#mainLogInBtn");
-const mainJoinBtn = document.querySelector("#mainJoinBtn");
-const board = document.querySelector("#board");
-const search = document.querySelector("#search");
-
-mainLogInBtn.addEventListener("click", (event) => {
-  event.preventDefault();
-  location.href = "/auth/login";
-})
-
-mainJoinBtn.addEventListener("click", (event) => {
-  event.preventDefault();
-  location.href = "/auth/join";
-})
-
-mainTitle.addEventListener("click", (event) => {
-  event.preventDefault();
-  location.href = "/";
-})
-
-board.addEventListener("click", (event) => {
-  event.preventDefault();
-  location.href = "/board";
-})
-
-search.addEventListener("click", (event) => {
-  event.preventDefault();
-  location.href = "/search";
-})

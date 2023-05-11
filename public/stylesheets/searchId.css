@@ -60,13 +60,14 @@ input{
 }
 
 .inputBox{
+    margin-left: 22px;
     width: 250px;
 }
 
 #email{
-    margin-left: 15px;
+    margin-left: 12px;
 }
 
 #name{
-    margin-left: 29px;
+    margin-left: 26px;
 }
