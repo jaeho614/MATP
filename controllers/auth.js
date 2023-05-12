@@ -153,7 +153,7 @@ exports.authChk = async (req, res, next) => {
             return res.json({joined: true, message: "인증번호 받기 버튼을 눌러주세요."});
         }
         if(exAuth.ok){
-            return res.json({joined: true, message: "이미 인증이 완료되었습니다."});
+            return res.json({joined: false, message: "이미 인증이 완료되었습니다."});
         }
         if(authNum !== exAuth.auth){
             return res.json({joined: true, message: "인증번호를 다시 확인해주세요."});
